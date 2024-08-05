@@ -3,114 +3,143 @@
 <head>
     <meta charset="utf-8" />
     <title>Portafolio de Victor Santiago Cubillos Cruz</title>
+    <!-- Estilos generales -->
     <style>
-        /* Estilos generales */
+
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-            color: #333333;
+          font-family: Arial, sans-serif;
+          line-height: 1.6;
+          margin: 0;
+          padding: 0;
+          background-color: #ffffff;
+          color: #333333;
         }
-
+  
         header {
-            text-align: center;
-            margin-bottom: 20px;
-            padding: 20px;
-            background-color: #4169e1;
-            color: #ffffff;
+          text-align: center;
+          margin-bottom: 10px;
+          padding: 20px;
+          background-color: #4169e1;
+          color: #ffffff;
         }
-
-        header img {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-        }
-
-        nav {
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        nav a {
-            margin: 0 10px;
-            color: #ffffff;
-            text-decoration: none;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
+  
         section {
-            margin: 20px;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+          border-radius: 5px;
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+          background-color: #f9f9f9;
+          margin-bottom: 40px;
+          padding: 5px;
         }
-
+  
+        section img {
+          min-width: 230px;
+          max-height: 230px;
+          object-fit: cover;
+        }
+  
         .cta {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
+          display: flex;
+          justify-content: center;
+          margin-top: 20px;
         }
-
+  
         .cta button {
-            padding: 10px 20px;
-            margin: 5px;
-            border: none;
-            border-radius: 5px;
-            background-color: #4169e1;
-            color: #ffffff;
-            cursor: pointer;
+          padding: 10px 20px;
+          margin: 5px;
+          border: none;
+          border-radius: 5px;
+          background-color: #324fa3;
+          color: #ffffff;
+          cursor: pointer;
+          transition: background-color 0.3s;
         }
-
+  
         .cta button:hover {
-            background-color: #333333;
+          background-color: #11bcf0;
         }
-
-        .experience, .projects, .skills, .services, .testimonials, .contact, .blog {
-            
-            background-color: #f9f9f9;
-            margin-bottom: 40px;
-        }
-
-        .about-me img {
-            max-width: 200px;
-            height: auto;
-            border-radius: 50%;
-        }
+  
         .about-me {
-            background-color: #f9f9f9;
-            text-align: center;
-            margin-bottom: 40px;
+          background-color: #f9f9f9;
+          text-align: center;
         }
-
+  
+        .about-me img {
+          max-width: 200px;
+          height: auto;
+          border-radius: 50%;
+        }
+  
+        .experience,
+        .projects,
+        .skills,
+        .services,
+        .testimonials,
+        .contact,
+        .blog {
+          background-color: #f9f9f9;
+        }
+  
         .social-links a {
-            margin: 0 10px;
-            color: #4169e1;
-            text-decoration: none;
+          margin: 0 10px;
+          color: #4169e1;
+          text-decoration: none;
+          transition: text-decoration 0.3s;
         }
-
+  
         .social-links a:hover {
-            text-decoration: underline;
+          text-decoration: underline;
         }
-      
+  
         footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #333333;
-            color: #ffffff;
-            margin-top: 40px;
+          text-align: center;
+          padding: 20px;
+          background-color: #333333;
+          color: #ffffff;
+          margin-top: 40px;
         }
-    </style>
+  
+        h1 {
+          font-size: 3.8rem;
+          margin: 0;
+          padding: 0;
+        }
+  
+        h2 {
+          font-size: 3.5rem;
+          margin: 0;
+          padding: 0;
+        }
+  
+        nav {
+          background-color: #4169e1;
+          margin: 0;
+          padding: 5px 0;
+          text-align: center;
+        }
+  
+        nav a {
+          margin: 0 10px;
+          color: #ffffff;
+          text-decoration: none;
+          transition: text-decoration 0.3s;
+        }
+  
+        nav a:hover {
+          text-decoration: underline;
+        }
+  
+        header p {
+          font-weight: bold;
+          opacity: 0.85;
+          margin: 0;
+        }
+      </style>
 </head>
 <body>
     <header>
        
         <h1>Victor Santiago Cubillos Cruz</h1>
-        <p>Marketero digital enfocado en branding y Contente marketing. <br> Creo firmemente en la frase "Nunca pares de aprender".</p>
+        <p>Marketing manager digital enfocado en branding y Contente marketing. <br> Creo firmemente en la frase "Nunca pares de aprender".</p>
         <div class="cta">
             <button onclick="location.href='#projects'">Ver mi trabajo</button>
             <button onclick="location.href='#contact'">Contactarme</button>
@@ -132,7 +161,7 @@
     <section id="about-me" class="about-me">
         <h2>Quien soy</h2>
         <img src="./Imagenes/Imagen_2.jpeg" alt="Foto profesional">
-        <p>Marketero digital con 2 años de experiencia en branding y SEO. Mi misión es ayudar a las marcas a destacar en el entorno digital a través de estrategias efectivas y creativas. Creo en la importancia de la mejora continua y en el poder de una buena historia.</p>
+        <p>Cuento con 2 años de experiencia en branding y Marketing de contenidos. Mi misión es ayudar a las marcas a destacar en el entorno digital a través de estrategias efectivas y creativas. Creo en la importancia de la mejora continua y en el poder de una buena historia.</p>
         <div class="social-links">
             <a href="https://www.linkedin.com/in/victor-santiago-cubillos-cruz-b09860256/" target="_blank">LinkedIn</a>
             <a href="https://www.instagram.com/santiago_market?igsh=aXZ6Y3d3cXB1cTEx">Instagram</a>
@@ -207,7 +236,7 @@
         <p>Teléfono: (57) 3044161693</p>
         <div class="social-links">
             <a href="https://www.linkedin.com/in/victor-santiago-cubillos-cruz-b09860256/" target="_blank">Sigueme en LinkedIn</a>
-            <a href="https://www.linkedin.com/in/victor-santiago-cubillos-cruz-b09860256/">Sigueme en instgarm</a>
+            <a href="https://www.instagram.com/santiago_market?igsh=aXZ6Y3d3cXB1cTEx">Sigueme en instagram</a>
         </div>
     </section>
 

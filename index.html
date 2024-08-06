@@ -36,7 +36,7 @@
           max-height: 230px;
           object-fit: cover;
         }
-  
+        
         .cta {
           display: flex;
           justify-content: center;
@@ -52,6 +52,7 @@
           color: #ffffff;
           cursor: pointer;
           transition: background-color 0.3s;
+          
         }
   
         .cta button:hover {
@@ -80,13 +81,24 @@
   
         .social-links a {
           margin: 0 10px;
-          color: #4169e1;
+          background-color: #324fa3;
           text-decoration: none;
           transition: text-decoration 0.3s;
         }
+
+        .social-links button {
+          padding: 10px 20px;
+          margin: 5px;
+          border: none;
+          border-radius: 5px;
+          background-color: #324fa3;
+          color: #ffffff;
+          cursor: pointer;
+          transition: background-color 0.3s;
+        }  
   
-        .social-links a:hover {
-          text-decoration: underline;
+        .social-links button:hover {
+          background-color: #11bcf0;
         }
   
         footer {
@@ -161,8 +173,8 @@
         <img src="./Imagenes/Imagen_2.jpeg" alt="Foto profesional">
         <p>Cuento con 2 años de experiencia en branding y Marketing de contenidos. Mi misión es ayudar a las marcas a destacar en el entorno digital a través de estrategias efectivas y creativas. Creo en la importancia de la mejora continua y en el poder de una buena historia.</p>
         <div class="social-links">
-            <a href="https://www.linkedin.com/in/victor-santiago-cubillos-cruz-b09860256/" target="_blank">LinkedIn</a>
-            <a href="https://www.instagram.com/santiago_market?igsh=aXZ6Y3d3cXB1cTEx">Instagram</a>
+          <button onclick="location.href='https://www.linkedin.com/in/victor-santiago-cubillos-cruz-b09860256/'">LinkedIn</button>
+          <button onclick="location.href='https://www.instagram.com/santiago_market?igsh=aXZ6Y3d3cXB1cTEx'">Instagram</button>
         </div>
     </section>
 
@@ -211,7 +223,9 @@
         <h3>Certificaciones</h3>
         <ul>
             <li>Community management en platzi</li>
-             <a  href="pagina_certificaciones.html">Ver mas certificaciones</a>
+            <div class="social-links">
+            <button onclick="location.href='pagina_certificaciones.html'">Ver mas certificaciones</button>
+            </div>
         </ul>
     </section>
 
@@ -234,8 +248,8 @@
         <p>Correo Electrónico: <a href="mailto:Sant4cubillos@outlook.com">Sant4cubillos@outlook.com</a></p>
         <p>Teléfono: (57) 3044161693</p>
         <div class="social-links">
-            <a href="https://www.linkedin.com/in/victor-santiago-cubillos-cruz-b09860256/" target="_blank">Sigueme en LinkedIn</a>
-            <a href="https://www.instagram.com/santiago_market?igsh=aXZ6Y3d3cXB1cTEx">Sigueme en instagram</a>
+          <button onclick="location.href='https://www.linkedin.com/in/victor-santiago-cubillos-cruz-b09860256/'">LinkedIn</button>
+            <button onclick="location.href='https://www.instagram.com/santiago_market?igsh=aXZ6Y3d3cXB1cTEx'">Instagram</button>
         </div>
     </section>
 

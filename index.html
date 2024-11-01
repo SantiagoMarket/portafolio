@@ -3,154 +3,17 @@
 <head>
     <meta charset="utf-8" />
     <title>Portafolio de Victor Santiago Cubillos Cruz</title>
-    <!-- Estilos generales -->
-    <style>
-
-        body {
-          font-family: Arial, sans-serif;
-          line-height: 1.6;
-          margin: 0;
-          padding: 0;
-          background-color: #ffffff;
-          color: #333333;
-        }
-  
-        header {
-          text-align: center;
-          margin-bottom: 10px;
-          padding: 20px;
-          background-color: #4169e1;
-          color: #ffffff;
-        }
-  
-        section {
-          border-radius: 5px;
-          box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-          background-color: #f9f9f9;
-          margin-bottom: 40px;
-          padding: 5px;
-        }
-  
-        section img {
-          min-width: 230px;
-          max-height: 230px;
-          object-fit: cover;
-        }
-        
-        .cta {
-          display: flex;
-          justify-content: center;
-          margin-top: 20px;
-        }
-  
-        .cta button {
-          padding: 10px 20px;
-          margin: 5px;
-          border: none;
-          border-radius: 5px;
-          background-color: #324fa3;
-          color: #ffffff;
-          cursor: pointer;
-          transition: background-color 0.3s;
-          
-        }
-  
-        .cta button:hover {
-          background-color: #11bcf0;
-        }
-  
-        .about-me {
-          background-color: #f9f9f9;
-          text-align: center;
-        }
-  
-        .about-me img {
-          max-width: 200px;
-          height: auto;
-          border-radius: 50%;
-        }
-  
-        .experience,
-        .projects,
-        .skills,
-        .services,
-        .contact,
-        .blog {
-          background-color: #f9f9f9;
-        }
-  
-        .social-links a {
-          margin: 0 10px;
-          background-color: #324fa3;
-          text-decoration: none;
-          transition: text-decoration 0.3s;
-        }
-
-        .social-links button {
-          padding: 10px 20px;
-          margin: 5px;
-          border: none;
-          border-radius: 5px;
-          background-color: #324fa3;
-          color: #ffffff;
-          cursor: pointer;
-          transition: background-color 0.3s;
-        }  
-  
-        .social-links button:hover {
-          background-color: #11bcf0;
-        }
-  
-        footer {
-          text-align: center;
-          padding: 20px;
-          background-color: #333333;
-          color: #ffffff;
-          margin-top: 40px;
-        }
-  
-        h1 {
-          font-size: 3.8rem;
-          margin: 0;
-          padding: 0;
-        }
-  
-        h2 {
-          font-size: 3.5rem;
-          margin: 0;
-          padding: 0;
-        }
-  
-        nav {
-          background-color: #4169e1;
-          margin: 0;
-          padding: 5px 0;
-          text-align: center;
-        }
-  
-        nav a {
-          margin: 0 10px;
-          color: #ffffff;
-          text-decoration: none;
-          transition: text-decoration 0.3s;
-        }
-  
-        nav a:hover {
-          text-decoration: underline;
-        }
-  
-        header p {
-          font-weight: bold;
-          opacity: 0.85;
-          margin: 0;
-        }
-      </style>
+    
+    <!-- Enlace al archivo CSS externo -->
+    <link rel="stylesheet" href="diseño.css">
 </head>
 <body>
+    <!-- Encabezado con el título y breve descripción -->
     <header>
-       
         <h1>Victor Santiago Cubillos Cruz</h1>
-        <p>Marketing digital enfocado en Branding y Contente marketing. <br> Creo firmemente en la frase "Nunca pares de aprender".</p>
+        <p>Apasionado por el marketing digital y orientado a la creación de estrategias innovadoras que generan resultados.</p>
+        
+        <!-- Botones CTA para navegar a secciones específicas -->
         <div class="cta">
             <button onclick="location.href='#projects'">Ver mi trabajo</button>
             <button onclick="location.href='#contact'">Contactarme</button>
@@ -158,6 +21,7 @@
         </div>
     </header>
 
+    <!-- Barra de navegación principal -->
     <nav>
         <a href="#about-me">Sobre mí</a>
         <a href="#experience">Experiencia</a>
@@ -167,92 +31,77 @@
         <a href="#contact">Contacto</a>
     </nav>
 
-    <!-- Sección "Sobre mí" -->
+    <!-- Sección "Sobre mí" con descripción e imagen -->
     <section id="about-me" class="about-me">
-        <h2>Quien soy</h2>
+        <h2>Quién soy</h2>
         <img src="./Imagenes/Imagen_2.jpeg" alt="Foto profesional">
-        <p>Cuento con 2 años de experiencia en Branding y Marketing de contenidos. Mi misión es ayudar a las marcas a destacar en el entorno digital a través de estrategias efectivas y creativas. Creo en la importancia de la mejora continua y en el poder de una buena historia.</p>
+        <p>Soy un profesional de marketing digital enfocado en desarrollar estrategias que combinan creatividad e innovación, optimizando siempre los resultados. Me especializo en el uso de IA y herramientas low-code para automatizar procesos y mejorar la experiencia del usuario. Mi objetivo es seguir aprendiendo y aplicar mis conocimientos en entornos donde la creatividad sea el motor del éxito.</p>
+        
+        <!-- Enlaces a redes sociales -->
         <div class="social-links">
           <button onclick="location.href='https://www.linkedin.com/in/victor-santiago-cubillos-cruz-b09860256/'">LinkedIn</button>
           <button onclick="location.href='https://www.instagram.com/santiago_market?igsh=aXZ6Y3d3cXB1cTEx'">Instagram</button>
         </div>
     </section>
 
-    <!-- Sección "Experiencia" -->
+    <!-- Sección "Experiencia" con roles y logros -->
     <section id="experience" class="experience">
-        <h2 id="centrar">Experiencia</h2>
+        <h2>Experiencia</h2>
         <h3>Director de Marketing</h3>
         <p>BienestarTU | Julio 2023 - Presente</p>
         <ul>
             <li>Desarrollé y ejecuté estrategias de content marketing.</li>
-            <li>Desarrolle campañas de branding.</li>
+            <li>Desarrollé campañas de branding.</li>
         </ul>
         <h3>Community manager</h3>
-        <p>PrintGo| Septiembre 2022 - Junio 2023</p>
+        <p>PrintGo | Septiembre 2022 - Junio 2023</p>
         <ul>
-            <li>Creé contenido persuasivo para redes sociales.</li>
-            <li>Analicé datos de rendimiento para optimizar futuras campañas de contenido.</li>
-        </ul>
+          <li>Creé contenido persuasivo para redes sociales.</li>
+          <li>Analicé datos de rendimiento para optimizar futuras campañas de contenido.</li>
+      </ul>
+        <!-- Agregar más experiencias aquí -->
     </section>
 
-    <!-- Sección "Proyectos Destacados" -->
+    <!-- Sección de "Proyectos Destacados" -->
     <section id="projects" class="projects">
         <h2>Proyectos Destacados</h2>
-        <h3>Campaña Content Consejo de bogota</h3>
-        <p><b>Objetivo:</b> Ser elegido en el consejo de bogota. <br> <b>Rol:</b> Director de comunicaciones. <br><b>Resultados:</b> 200 votos en 2 meses de trabajo.</p>
+        <h3>Campaña Content Consejo de Bogotá</h3>
+        <p><b>Objetivo:</b> Ser elegido en el consejo de Bogotá. <br> <b>Rol:</b> Director de comunicaciones. <br><b>Resultados:</b> 200 votos en 2 meses de trabajo.</p>
     </section>
 
-    <!-- Sección "Habilidades" -->
+    <!-- Sección de "Habilidades" con categorías técnicas y blandas -->
     <section id="skills" class="skills">
         <h2>Habilidades</h2>
         <h3>Habilidades Técnicas</h3>
         <ul>
             <li>SEO</li>
             <li>Copywriting</li>
-            <li>Manejo basico de HTML/CSS</li>
-            <li>Manejo de herramientas low/no code</li>
-            <li>Manejo de IA enfocada en marketing</li>
+            <!-- Agregar más habilidades aquí -->
         </ul>
-        <h3>Habilidades Blandas</h3>
-        <ul>
-            <li>Comunicación</li>
-            <li>Creatividad</li>
-            <li>Liderazgo</li>
-            <li>Gestión de Equipos</li>
-        </ul>
-        <h3>Certificaciones</h3>
-        <ul>
-            <li>Community management en platzi</li>
-            <div class="social-links">
-            <button onclick="location.href='pagina_certificaciones.html'">Ver mas certificaciones</button>
-            </div>
-        </ul>
-    </section>
-
-    <!-- Sección "Servicios" -->
-    <section id="services" class="services">
-        <h2>Servicios</h2>
-        <p>Ofrezco una variedad de servicios de marketing digital, incluyendo:</p>
-        <ul>
-            <li>Gestión de Redes Sociales</li>
-            <li>Marketing de Contenidos</li>
-            <li>Estrategia de marketing</li>
-        </ul>
-        <h3>Beneficios de Trabajar Conmigo</h3>
-        <p>Trabajo enfocado en resultados, estrategias personalizadas y un enfoque creativo para asegurar el éxito de tus campañas.</p>
-    </section>
-    <!-- Sección "Contacto" -->
-    <section id="contact" class="contact">
-        <h2>Contacto</h2>
-        <p>Contactame</p>
-        <p>Correo Electrónico: <a href="mailto:Sant4cubillos@outlook.com">Sant4cubillos@outlook.com</a></p>
-        <p>Teléfono: (57) 3044161693</p>
+        <!-- Botón para ver más certificaciones -->
         <div class="social-links">
-          <button onclick="location.href='https://www.linkedin.com/in/victor-santiago-cubillos-cruz-b09860256/'">LinkedIn</button>
-            <button onclick="location.href='https://www.instagram.com/santiago_market?igsh=aXZ6Y3d3cXB1cTEx'">Instagram</button>
+          <button onclick="location.href='pagina_certificaciones.html'">Ver más certificaciones</button>
         </div>
     </section>
 
+    <!-- Sección de "Servicios" -->
+    <section id="services" class="services">
+        <h2>Servicios</h2>
+        <p>Ofrezco una variedad de servicios de marketing digital...</p>
+    </section>
+
+    <!-- Sección de "Contacto" -->
+    <section id="contact" class="contact">
+        <h2>Contacto</h2>
+        <p>Correo Electrónico: <a href="mailto:Sant4cubillos@outlook.com">Sant4cubillos@outlook.com</a></p>
+        <div class="social-links">
+          <button onclick="location.href='https://www.linkedin.com/in/victor-santiago-cubillos-cruz-b09860256/'">LinkedIn</button>
+          <button onclick="location.href='https://www.instagram.com/santiago_market?igsh=aXZ6Y3d3cXB1cTEx'">Instagram</button>
+          <button onclick="location.href='https://wa.me/3044161693'">Mi número de teléfono</button>
+        </div>
+    </section>
+
+    <!-- Pie de página -->
     <footer>
         <p>© 2024 Victor Santiago Cubillos Cruz</p>
     </footer>

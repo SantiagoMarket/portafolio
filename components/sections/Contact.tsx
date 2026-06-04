@@ -35,10 +35,8 @@ export default function Contact() {
 
         <a
           href="/agenda"
-          className="inline-flex items-center gap-3 mb-8 px-5 py-3 rounded-lg border-2 transition-colors"
+          className="inline-flex items-center gap-3 mb-8 px-5 py-3 rounded-lg border-2 transition-colors hover:bg-[var(--burg-xl)]"
           style={{ borderColor: "var(--burg)", color: "var(--burg)" }}
-          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--burg-xl)")}
-          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
         >
           <span className="font-mono font-bold text-sm">Agenda una llamada →</span>
           <span className="text-sm" style={{ color: "var(--text-4)" }}>30 o 45 min · Google Meet · Gratis</span>

@@ -36,7 +36,7 @@ export default function BookingForm({ date, time, duration, onSuccess, onBack }:
     form.nombre.trim().length >= 2 &&
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email) &&
     form.empresa.trim().length >= 1 &&
-    form.motivo.trim().length >= 10;
+    form.motivo.trim().length >= 5;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -136,9 +136,15 @@ export default function BookingForm({ date, time, duration, onSuccess, onBack }:
             placeholder="¿En qué rol estás pensando? ¿Qué quieres conversar?"
             rows={4}
             className="w-full px-4 py-2.5 rounded-lg border text-sm outline-none resize-none"
+            aria-describedby="motivo-hint"
             style={inputStyle}
             required
           />
+          {form.motivo.trim().length > 0 && form.motivo.trim().length < 5 && (
+            <p id="motivo-hint" className="text-xs mt-1" style={{ color: "var(--text-4)" }}>
+              Mínimo 5 caracteres
+            </p>
+          )}
         </div>
       </div>
 

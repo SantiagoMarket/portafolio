@@ -52,6 +52,15 @@ export default function Nav() {
 
         <div className="flex items-center gap-3">
           <Link
+            href="/agenda"
+            className="hidden sm:inline-flex items-center px-4 py-2 text-sm font-mono border rounded transition-colors"
+            style={{ color: "var(--burg)", borderColor: "var(--burg)" }}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--burg-xl)")}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+          >
+            Agenda una llamada
+          </Link>
+          <Link
             href={resolveHref("/#proyectos")}
             className="inline-flex items-center px-4 py-2 text-sm font-mono border rounded transition-colors"
             style={{ color: "var(--burg)", borderColor: "var(--burg)" }}

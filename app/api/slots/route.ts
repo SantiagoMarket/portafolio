@@ -26,6 +26,14 @@ export async function GET(request: NextRequest) {
   const dayStart = new Date(`${date}T14:00:00Z`); // 9:00 Bogotá
   const dayEnd = new Date(`${date}T23:00:00Z`);   // 18:00 Bogotá
 
+  const rawKey = process.env.GOOGLE_PRIVATE_KEY ?? "";
+  const keyDiag = {
+    length: rawKey.length,
+    startsWithQuote: rawKey.startsWith('"'),
+    startsWithBegin: rawKey.startsWith("-----BEGIN"),
+    hasLiteralN: rawKey.includes("\\n"),
+  };
+
   try {
     const busy = await getFreeBusy(dayStart.toISOString(), dayEnd.toISOString());
     const slots = computeAvailableSlots(date, durationMinutes, busy);
@@ -33,6 +41,6 @@ export async function GET(request: NextRequest) {
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
     console.error("[GET /api/slots]", err);
-    return Response.json({ error: "Error de conexión con Google Calendar", debug: msg }, { status: 503 });
+    return Response.json({ error: "Error de conexión con Google Calendar", debug: msg, keyDiag }, { status: 503 });
   }
 }

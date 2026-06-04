@@ -1,26 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap');
 @import "tailwindcss";
 
+@theme {
+  /* Tipografías */
+  --font-display: "Bebas Neue", sans-serif;
+  --font-sans: "DM Sans", sans-serif;
+  --font-mono: "Space Mono", monospace;
+
+  /* Fondos */
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #FAFAF8;
+  --color-surface: #F5F2EF;
+  --color-border: #F0EDE9;
+  --color-divider: #E8E4DF;
+
+  /* Texto */
+  --color-text-1: #111314;
+  --color-text-2: #2E343A;
+  --color-text-3: #4A4F54;
+  --color-text-4: #7A7570;
+
+  /* Acento borgoña */
+  --color-burg: #7A0B24;
+  --color-burg-h: #9B0E2E;
+  --color-burg-s: #C4405A;
+  --color-burg-bg: #F0D6DC;
+  --color-burg-xl: #F9EEF1;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #FFFFFF;
+  --bg-alt: #FAFAF8;
+  --surface: #F5F2EF;
+  --border: #F0EDE9;
+  --divider: #E8E4DF;
+  --text-1: #111314;
+  --text-2: #2E343A;
+  --text-3: #4A4F54;
+  --text-4: #7A7570;
+  --burg: #7A0B24;
+  --burg-h: #9B0E2E;
+  --burg-s: #C4405A;
+  --burg-bg: #F0D6DC;
+  --burg-xl: #F9EEF1;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg);
+  color: var(--text-1);
+  font-family: "DM Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Offset para que las secciones no queden tapadas por el nav sticky (h-16 = 64px) */
+section[id] {
+  scroll-margin-top: 4rem;
+}
+
+/* Focus visible accesible para teclado — anillo borgoña */
+:focus-visible {
+  outline: 2px solid var(--burg);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* text-4 (#7A7570) en bg-alt se acerca al límite WCAG AA.
+   Sólo se usa en metadatos pequeños; compensamos con peso 500. */
+.meta {
+  font-weight: 500;
+  color: var(--text-3);
 }

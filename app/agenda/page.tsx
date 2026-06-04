@@ -90,7 +90,7 @@ export default function AgendaPage() {
                 </div>
               ))}
               <span className="ml-2 text-sm" style={{ color: "var(--text-4)" }}>
-                {step !== "confirmed" && STEP_LABELS[step]}
+                {STEP_LABELS[step]}
               </span>
             </div>
           )}

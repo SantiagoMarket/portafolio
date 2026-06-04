@@ -53,7 +53,6 @@ export async function createEvent(params: {
       description: params.description,
       start: { dateTime: params.start, timeZone: "America/Bogota" },
       end: { dateTime: params.end, timeZone: "America/Bogota" },
-      attendees: [{ email: params.guestEmail, displayName: params.guestName }],
       conferenceData: {
         createRequest: {
           requestId: `${Date.now()}-${Math.random().toString(36).slice(2)}`,

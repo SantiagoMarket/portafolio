@@ -68,9 +68,8 @@ export async function POST(request: NextRequest) {
       description: `Motivo: ${motivo}\n\nEmpresa: ${empresa}\nDuración: ${duration} min`,
     }));
   } catch (err) {
-    const msg = err instanceof Error ? err.message : String(err);
     console.error("[POST /api/book] createEvent", err);
-    return Response.json({ error: "Error al crear el evento", debug: msg }, { status: 503 });
+    return Response.json({ error: "Error al crear el evento" }, { status: 503 });
   }
 
   const fechaFormateada = formatDate(date, time);

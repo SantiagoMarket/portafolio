@@ -47,25 +47,16 @@ export async function createEvent(params: {
 
   const res = await calendar.events.insert({
     calendarId: CALENDAR_ID,
-    conferenceDataVersion: 1,
     requestBody: {
       summary: params.title,
       description: params.description,
       start: { dateTime: params.start, timeZone: "America/Bogota" },
       end: { dateTime: params.end, timeZone: "America/Bogota" },
-      conferenceData: {
-        createRequest: {
-          requestId: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
-          conferenceSolutionKey: { type: "hangoutsMeet" },
-        },
-      },
     },
   });
 
   const eventId = res.data.id!;
-  const meetLink =
-    res.data.conferenceData?.entryPoints?.find((e) => e.entryPointType === "video")
-      ?.uri ?? "";
+  const eventLink = res.data.htmlLink ?? "";
 
-  return { eventId, meetLink };
+  return { eventId, meetLink: eventLink };
 }

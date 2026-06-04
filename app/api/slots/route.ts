@@ -31,7 +31,8 @@ export async function GET(request: NextRequest) {
     const slots = computeAvailableSlots(date, durationMinutes, busy);
     return Response.json({ slots });
   } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
     console.error("[GET /api/slots]", err);
-    return Response.json({ error: "Error de conexión con Google Calendar" }, { status: 503 });
+    return Response.json({ error: "Error de conexión con Google Calendar", debug: msg }, { status: 503 });
   }
 }

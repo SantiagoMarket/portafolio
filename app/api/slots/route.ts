@@ -32,7 +32,13 @@ export async function GET(request: NextRequest) {
       return Response.json({ error: "Error al obtener disponibilidad" }, { status: 503 });
     }
 
-    const data = await res.json();
+    const text = await res.text();
+    if (!text) {
+      console.error("[GET /api/slots] n8n devolvió body vacío — revisar workflow en n8n");
+      return Response.json({ error: "Error al obtener disponibilidad" }, { status: 503 });
+    }
+
+    const data = JSON.parse(text);
     console.log("[GET /api/slots] n8n raw:", JSON.stringify(data).slice(0, 300));
 
     // n8n puede devolver array [{slots}] o el objeto directo {slots}

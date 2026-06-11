@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 
 const links = [
@@ -55,14 +57,16 @@ export default function TarjetaPage() {
         </p>
 
         {/* Foto */}
-        <Image
-          src="/portada_tarjeta_contacto.png"
-          alt="Santiago Cubillos"
-          width={220}
-          height={220}
-          className="mx-auto rounded mb-6"
-          style={{ border: "2px solid var(--burg)", width: "55%", height: "auto" }}
-        />
+        <div className="mx-auto mb-6" style={{ width: "55%" }}>
+          <Image
+            src="/portada_tarjeta_contacto.png"
+            alt="Santiago Cubillos"
+            width={220}
+            height={220}
+            className="w-full h-auto rounded"
+            style={{ border: "2px solid var(--burg)" }}
+          />
+        </div>
 
         {/* Links */}
         <div className="flex flex-col gap-2.5">
@@ -79,16 +83,15 @@ export default function TarjetaPage() {
                 color: "var(--text-1)",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--burg)";
-                (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "var(--bg-alt)";
+                e.currentTarget.style.borderColor = "var(--burg)";
+                e.currentTarget.style.backgroundColor = "var(--bg-alt)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--divider)";
-                (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "var(--bg)";
+                e.currentTarget.style.borderColor = "var(--divider)";
+                e.currentTarget.style.backgroundColor = "var(--bg)";
               }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={icon} alt={label} width={28} height={28} style={{ objectFit: "contain" }} />
+              <Image src={icon} alt={label} width={28} height={28} style={{ objectFit: "contain" }} />
               {label}
             </a>
           ))}

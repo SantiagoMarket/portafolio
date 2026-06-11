@@ -15,21 +15,30 @@ export async function GET(request: NextRequest) {
 
   const { date } = parsed.data;
 
+  if (!process.env.N8N_WEBHOOK_SLOTS_URL) {
+    console.error("[GET /api/slots] N8N_WEBHOOK_SLOTS_URL no configurada");
+    return Response.json({ error: "Configuración incompleta" }, { status: 503 });
+  }
+
   try {
-    const res = await fetch(process.env.N8N_WEBHOOK_SLOTS_URL!, {
+    const res = await fetch(process.env.N8N_WEBHOOK_SLOTS_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({}),
     });
 
     if (!res.ok) {
+      console.error("[GET /api/slots] n8n status:", res.status);
       return Response.json({ error: "Error al obtener disponibilidad" }, { status: 503 });
     }
 
-    // n8n retorna: [{ available: [...], slots: { "YYYY-MM-DD": [{ startFormatted, available, ... }] }, summary }]
     const data = await res.json();
+    console.log("[GET /api/slots] n8n raw:", JSON.stringify(data).slice(0, 300));
+
+    // n8n puede devolver array [{slots}] o el objeto directo {slots}
+    const payload = Array.isArray(data) ? data[0] : data;
     const daySlots: Array<{ startFormatted: string; available: boolean }> =
-      data[0]?.slots?.[date] ?? [];
+      payload?.slots?.[date] ?? [];
 
     const slots = daySlots.filter((s) => s.available).map((s) => s.startFormatted);
 

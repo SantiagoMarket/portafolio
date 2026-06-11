@@ -42,6 +42,19 @@ export default function MeetPage() {
       <main className="min-h-screen" style={{ backgroundColor: "var(--bg)" }}>
         <div className="max-w-xl mx-auto px-6 py-16">
 
+          {/* Encabezado */}
+          <div className="mb-10">
+            <p className="text-sm font-mono mb-2" style={{ color: "var(--burg)" }}>
+              soysantiago.com/meet
+            </p>
+            <h1 className="font-display text-4xl mb-3" style={{ color: "var(--text-1)" }}>
+              Hablemos
+            </h1>
+            <p className="text-base" style={{ color: "var(--text-3)" }}>
+              45 min · Google Meet
+            </p>
+          </div>
+
           {/* Indicador de pasos */}
           {step !== "confirmed" && (
             <div className="flex items-center gap-2 mb-8">

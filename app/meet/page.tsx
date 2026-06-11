@@ -37,7 +37,6 @@ export default function MeetPage() {
 
   return (
     <>
-      <Nav />
       <main className="min-h-screen" style={{ backgroundColor: "var(--bg)" }}>
         <div className="max-w-xl mx-auto px-6 py-16">
 

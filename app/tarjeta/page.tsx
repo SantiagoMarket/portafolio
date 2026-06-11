@@ -23,15 +23,15 @@ const links = [
 export default function TarjetaPage() {
   return (
     <main
-      className="min-h-screen flex items-center justify-center px-4 py-12"
+      className="min-h-dvh flex items-center justify-center px-4 py-8 sm:py-12"
       style={{ backgroundColor: "var(--bg)" }}
     >
       <div
-        className="w-full max-w-sm rounded-xl border p-8 text-center"
+        className="w-full max-w-sm rounded-xl border p-5 sm:p-8 text-center"
         style={{
           backgroundColor: "var(--bg-alt)",
           borderColor: "var(--divider)",
-          boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
         }}
       >
         {/* Nombre */}
@@ -57,7 +57,7 @@ export default function TarjetaPage() {
         </p>
 
         {/* Foto */}
-        <div className="mx-auto mb-6" style={{ width: "55%" }}>
+        <div className="mx-auto mb-6" style={{ width: "62%" }}>
           <Image
             src="/portada_tarjeta_contacto.png"
             alt="Santiago Cubillos"
@@ -69,18 +69,19 @@ export default function TarjetaPage() {
         </div>
 
         {/* Links */}
-        <div className="flex flex-col gap-2.5">
+        <div className="flex flex-col gap-3">
           {links.map(({ href, label, icon }) => (
             <a
               key={label}
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 px-4 py-3 rounded-lg border font-mono text-sm transition-colors"
+              className="flex items-center gap-3 px-4 py-3.5 rounded-lg border font-mono text-sm transition-colors active:scale-[0.98]"
               style={{
                 backgroundColor: "var(--bg)",
                 borderColor: "var(--divider)",
                 color: "var(--text-1)",
+                touchAction: "manipulation",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = "var(--burg)";

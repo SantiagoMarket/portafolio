@@ -42,9 +42,6 @@ export default function MeetPage() {
 
           {/* Encabezado */}
           <div className="mb-10">
-            <p className="text-sm font-mono mb-2" style={{ color: "var(--burg)" }}>
-              soysantiago.com/meet
-            </p>
             <h1 className="font-display text-4xl mb-3" style={{ color: "var(--text-1)" }}>
               Hablemos
             </h1>
@@ -56,25 +53,27 @@ export default function MeetPage() {
           {/* Indicador de pasos */}
           {step !== "confirmed" && (
             <div className="flex items-center gap-2 mb-8">
-              {([1, 2] as const).map((n) => (
-                <div key={n} className="flex items-center gap-2">
-                  <div
-                    className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-mono font-bold"
-                    style={{
-                      backgroundColor: n <= stepNumber ? "var(--burg)" : "var(--divider)",
-                      color: n <= stepNumber ? "white" : "var(--text-4)",
-                    }}
-                  >
-                    {n}
-                  </div>
-                  {n < 2 && (
+              <div aria-hidden="true" className="flex items-center gap-2">
+                {([1, 2] as const).map((n) => (
+                  <div key={n} className="flex items-center gap-2">
                     <div
-                      className="w-8 h-px"
-                      style={{ backgroundColor: n < stepNumber ? "var(--burg)" : "var(--divider)" }}
-                    />
-                  )}
-                </div>
-              ))}
+                      className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-mono font-bold"
+                      style={{
+                        backgroundColor: n <= stepNumber ? "var(--burg)" : "var(--divider)",
+                        color: n <= stepNumber ? "white" : "var(--text-4)",
+                      }}
+                    >
+                      {n}
+                    </div>
+                    {n < 2 && (
+                      <div
+                        className="w-8 h-px"
+                        style={{ backgroundColor: n < stepNumber ? "var(--burg)" : "var(--divider)" }}
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
               <span className="ml-2 text-sm" style={{ color: "var(--text-4)" }}>
                 {STEP_LABELS[step as Exclude<Step, "confirmed">]}
               </span>

@@ -158,7 +158,7 @@ export default function CalendarPicker({ duration, onSelect }: Props) {
                 <button
                   key={slot}
                   onClick={() => onSelect(selectedDate, slot)}
-                  className="py-2 text-sm font-mono rounded border transition-colors"
+                  className="py-3 text-sm font-mono rounded border transition-colors"
                   style={{
                     borderColor: "var(--burg)",
                     color: "var(--burg)",

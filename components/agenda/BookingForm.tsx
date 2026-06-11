@@ -149,7 +149,7 @@ export default function BookingForm({ date, time, duration, onSuccess, onBack }:
       </div>
 
       {error && (
-        <p className="text-sm" style={{ color: "var(--burg)" }}>
+        <p role="alert" className="text-sm" style={{ color: "var(--burg)" }}>
           {error}
         </p>
       )}

@@ -1,37 +1,41 @@
 import { type NextRequest } from "next/server";
 import { z } from "zod";
-import { getFreeBusy } from "@/lib/google-calendar";
-import { computeAvailableSlots } from "@/lib/availability";
 
 const querySchema = z.object({
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Formato inválido: YYYY-MM-DD"),
-  duration: z.enum(["30", "45"]),
 });
 
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
-  const parsed = querySchema.safeParse({
-    date: searchParams.get("date"),
-    duration: searchParams.get("duration"),
-  });
+  const parsed = querySchema.safeParse({ date: searchParams.get("date") });
 
   if (!parsed.success) {
     return Response.json({ error: "Parámetros inválidos" }, { status: 400 });
   }
 
-  const { date, duration } = parsed.data;
-  const durationMinutes = Number(duration);
-
-  // Día completo en UTC para FreeBusy (Bogotá UTC-5 → rango 14:00Z–23:59Z del día anterior al 14:00Z del día)
-  const dayStart = new Date(`${date}T14:00:00Z`); // 9:00 Bogotá
-  const dayEnd = new Date(`${date}T23:00:00Z`);   // 18:00 Bogotá
+  const { date } = parsed.data;
 
   try {
-    const busy = await getFreeBusy(dayStart.toISOString(), dayEnd.toISOString());
-    const slots = computeAvailableSlots(date, durationMinutes, busy);
+    const res = await fetch(process.env.N8N_WEBHOOK_SLOTS_URL!, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({}),
+    });
+
+    if (!res.ok) {
+      return Response.json({ error: "Error al obtener disponibilidad" }, { status: 503 });
+    }
+
+    // n8n retorna: [{ available: [...], slots: { "YYYY-MM-DD": [{ startFormatted, available, ... }] }, summary }]
+    const data = await res.json();
+    const daySlots: Array<{ startFormatted: string; available: boolean }> =
+      data[0]?.slots?.[date] ?? [];
+
+    const slots = daySlots.filter((s) => s.available).map((s) => s.startFormatted);
+
     return Response.json({ slots });
   } catch (err) {
     console.error("[GET /api/slots]", err);
-    return Response.json({ error: "Error de conexión con Google Calendar" }, { status: 503 });
+    return Response.json({ error: "Error de conexión" }, { status: 503 });
   }
 }

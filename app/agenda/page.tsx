@@ -2,51 +2,39 @@
 
 import { useState } from "react";
 import Nav from "@/components/layout/Nav";
-import DurationPicker from "@/components/agenda/DurationPicker";
 import CalendarPicker from "@/components/agenda/CalendarPicker";
 import BookingForm from "@/components/agenda/BookingForm";
 import ConfirmationView from "@/components/agenda/ConfirmationView";
 
-type Step = "duration" | "calendar" | "form" | "confirmed";
+type Step = "calendar" | "form" | "confirmed";
 
 interface BookingState {
-  duration: 30 | 45 | null;
   date: string | null;
   time: string | null;
-  meetLink: string | null;
 }
 
 const STEP_LABELS: Record<Exclude<Step, "confirmed">, string> = {
-  duration: "Elige la duración",
   calendar: "Elige fecha y hora",
   form: "Tus datos",
 };
 
 export default function AgendaPage() {
-  const [step, setStep] = useState<Step>("duration");
+  const [step, setStep] = useState<Step>("calendar");
   const [booking, setBooking] = useState<BookingState>({
-    duration: null,
     date: null,
     time: null,
-    meetLink: null,
   });
-
-  function handleDurationSelect(duration: 30 | 45) {
-    setBooking((b) => ({ ...b, duration }));
-    setStep("calendar");
-  }
 
   function handleSlotSelect(date: string, time: string) {
     setBooking((b) => ({ ...b, date, time }));
     setStep("form");
   }
 
-  function handleConfirmed(meetLink: string) {
-    setBooking((b) => ({ ...b, meetLink }));
+  function handleConfirmed() {
     setStep("confirmed");
   }
 
-  const stepNumber = { duration: 1, calendar: 2, form: 3, confirmed: 3 }[step];
+  const stepNumber = { calendar: 1, form: 2, confirmed: 2 }[step];
 
   return (
     <>
@@ -63,14 +51,14 @@ export default function AgendaPage() {
               Agenda una llamada
             </h1>
             <p className="text-base" style={{ color: "var(--text-3)" }}>
-              30 o 45 min · Google Meet · Gratis
+              45 min · Google Meet · Gratis
             </p>
           </div>
 
           {/* Indicador de pasos */}
           {step !== "confirmed" && (
             <div className="flex items-center gap-2 mb-8">
-              {([1, 2, 3] as const).map((n) => (
+              {([1, 2] as const).map((n) => (
                 <div key={n} className="flex items-center gap-2">
                   <div
                     className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-mono font-bold"
@@ -81,7 +69,7 @@ export default function AgendaPage() {
                   >
                     {n}
                   </div>
-                  {n < 3 && (
+                  {n < 2 && (
                     <div
                       className="w-8 h-px"
                       style={{ backgroundColor: n < stepNumber ? "var(--burg)" : "var(--divider)" }}
@@ -90,7 +78,7 @@ export default function AgendaPage() {
                 </div>
               ))}
               <span className="ml-2 text-sm" style={{ color: "var(--text-4)" }}>
-                {STEP_LABELS[step]}
+                {STEP_LABELS[step as Exclude<Step, "confirmed">]}
               </span>
             </div>
           )}
@@ -100,53 +88,24 @@ export default function AgendaPage() {
             className="rounded-xl border p-6"
             style={{ borderColor: "var(--divider)", backgroundColor: "var(--bg-alt)" }}
           >
-            {step === "duration" && (
-              <DurationPicker
-                selected={booking.duration}
-                onSelect={handleDurationSelect}
-              />
+            {step === "calendar" && (
+              <CalendarPicker duration={45} onSelect={handleSlotSelect} />
             )}
 
-            {step === "calendar" && booking.duration && (
-              <>
-                <div className="flex items-center gap-3 mb-6">
-                  <button
-                    onClick={() => setStep("duration")}
-                    className="text-sm"
-                    style={{ color: "var(--text-4)" }}
-                  >
-                    ← Cambiar duración
-                  </button>
-                  <span
-                    className="text-sm font-mono px-3 py-1 rounded-full"
-                    style={{ backgroundColor: "var(--burg-xl)", color: "var(--burg)" }}
-                  >
-                    {booking.duration} min
-                  </span>
-                </div>
-                <CalendarPicker
-                  duration={booking.duration}
-                  onSelect={handleSlotSelect}
-                />
-              </>
-            )}
-
-            {step === "form" && booking.duration && booking.date && booking.time && (
+            {step === "form" && booking.date && booking.time && (
               <BookingForm
                 date={booking.date}
                 time={booking.time}
-                duration={booking.duration}
+                duration={45}
                 onSuccess={handleConfirmed}
                 onBack={() => setStep("calendar")}
               />
             )}
 
-            {step === "confirmed" && booking.meetLink && booking.date && booking.time && booking.duration && (
+            {step === "confirmed" && booking.date && booking.time && (
               <ConfirmationView
-                meetLink={booking.meetLink}
                 date={booking.date}
                 time={booking.time}
-                duration={booking.duration}
               />
             )}
           </div>

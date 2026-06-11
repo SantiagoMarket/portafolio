@@ -6,7 +6,7 @@ interface Props {
   date: string;
   time: string;
   duration: 30 | 45;
-  onSuccess: (meetLink: string) => void;
+  onSuccess: () => void;
   onBack: () => void;
 }
 
@@ -56,7 +56,7 @@ export default function BookingForm({ date, time, duration, onSuccess, onBack }:
         setError(data.error ?? "Error al confirmar la reserva");
         return;
       }
-      onSuccess(data.meetLink);
+      onSuccess();
     } catch {
       setError("Error de conexión. Intenta de nuevo.");
     } finally {

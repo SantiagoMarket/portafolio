@@ -1,8 +1,6 @@
 interface Props {
-  meetLink: string;
   date: string;
   time: string;
-  duration: 30 | 45;
 }
 
 const MONTH_NAMES = [
@@ -15,7 +13,7 @@ function formatDate(date: string, time: string): string {
   return `${d} de ${MONTH_NAMES[Number(m) - 1]} de ${y} a las ${time}`;
 }
 
-export default function ConfirmationView({ meetLink, date, time, duration }: Props) {
+export default function ConfirmationView({ date, time }: Props) {
   return (
     <div className="flex flex-col items-center text-center gap-6 py-4">
       <div
@@ -31,22 +29,12 @@ export default function ConfirmationView({ meetLink, date, time, duration }: Pro
           ¡Llamada confirmada!
         </h2>
         <p className="text-base" style={{ color: "var(--text-3)" }}>
-          {formatDate(date, time)} · {duration} min
+          {formatDate(date, time)} · 45 min
         </p>
       </div>
 
-      <a
-        href={meetLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-full py-3 text-sm font-mono font-bold rounded-lg text-center transition-colors"
-        style={{ backgroundColor: "var(--burg)", color: "white" }}
-      >
-        Ver evento en Google Calendar →
-      </a>
-
       <p className="text-sm" style={{ color: "var(--text-4)" }}>
-        Revisa tu email — recibirás la confirmación con los detalles de la llamada.
+        Revisa tu correo — recibirás la confirmación con el link de Google Meet y los detalles de la llamada.
       </p>
     </div>
   );

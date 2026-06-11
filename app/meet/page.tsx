@@ -18,7 +18,7 @@ const STEP_LABELS: Record<Exclude<Step, "confirmed">, string> = {
   form: "Tus datos",
 };
 
-export default function AgendaPage() {
+export default function MeetPage() {
   const [step, setStep] = useState<Step>("calendar");
   const [booking, setBooking] = useState<BookingState>({
     date: null,
@@ -45,10 +45,10 @@ export default function AgendaPage() {
           {/* Encabezado */}
           <div className="mb-10">
             <p className="text-sm font-mono mb-2" style={{ color: "var(--burg)" }}>
-              soysantiago.com/agenda
+              soysantiago.com/meet
             </p>
             <h1 className="font-display text-4xl mb-3" style={{ color: "var(--text-1)" }}>
-              Agenda una llamada
+              Hablemos
             </h1>
             <p className="text-base" style={{ color: "var(--text-3)" }}>
               45 min · Google Meet

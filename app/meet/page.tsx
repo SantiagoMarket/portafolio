@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Nav from "@/components/layout/Nav";
 import CalendarPicker from "@/components/agenda/CalendarPicker";
 import BookingForm from "@/components/agenda/BookingForm";
 import ConfirmationView from "@/components/agenda/ConfirmationView";

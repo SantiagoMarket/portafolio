@@ -48,7 +48,7 @@ export default function ProjectLayout({ project }: ProjectLayoutProps) {
           >
             {project.result}
           </span>
-          {project.award && (
+          {project.highlight && (
             <div className="flex items-center gap-2">
               <span
                 className="px-2 py-0.5 text-xs font-mono rounded-full border"
@@ -58,10 +58,10 @@ export default function ProjectLayout({ project }: ProjectLayoutProps) {
                   borderColor: "rgba(122, 11, 36, 0.2)",
                 }}
               >
-                {project.award.label}
+                {project.highlight.label}
               </span>
               <span className="text-sm" style={{ color: "var(--text-4)" }}>
-                {project.award.detail}
+                {project.highlight.detail}
               </span>
             </div>
           )}
@@ -74,6 +74,17 @@ export default function ProjectLayout({ project }: ProjectLayoutProps) {
               style={{ color: "var(--burg)", borderColor: "var(--burg)" }}
             >
               Ver sitio ↗
+            </a>
+          )}
+          {project.repo && (
+            <a
+              href={project.repo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-4 py-1.5 text-sm font-mono rounded border transition-colors hover:bg-burg-xl"
+              style={{ color: "var(--burg)", borderColor: "var(--burg)" }}
+            >
+              Ver código ↗
             </a>
           )}
         </div>

@@ -9,6 +9,7 @@ const navLinks = [
   { label: "Experiencia", href: "/#experiencia" },
   { label: "Stack", href: "/#stack" },
   { label: "Proyectos", href: "/#proyectos" },
+  { label: "Hackathons", href: "/#hackathons" },
   { label: "Contacto", href: "/#contacto" },
 ];
 
@@ -60,15 +61,10 @@ export default function Nav() {
           >
             Agenda una llamada
           </Link>
-          <Link
-            href={resolveHref("/#proyectos")}
-            className="inline-flex items-center px-4 py-2 text-sm font-mono border rounded transition-colors"
-            style={{ color: "var(--burg)", borderColor: "var(--burg)" }}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--burg-xl)")}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
-          >
-            Ver proyectos →
-          </Link>
+          {/* El CTA «Ver proyectos →» vivía aquí y se quitó: el nav ya tiene
+              «Proyectos» y el Hero repite el mismo botón. Con seis enlaces, los
+              976 px útiles del contenedor no daban para los dos botones y
+              «Agenda una llamada» se partía en dos líneas sobre «Contacto». */}
 
           {/* Hamburger — solo móvil */}
           <button

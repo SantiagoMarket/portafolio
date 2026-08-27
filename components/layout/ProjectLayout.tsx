@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Nav from "@/components/layout/Nav";
+import ButtonLink from "@/components/ui/ButtonLink";
 import Chip from "@/components/ui/Chip";
 import type { Project } from "@/lib/projects";
 
@@ -50,43 +51,14 @@ export default function ProjectLayout({ project }: ProjectLayoutProps) {
           </span>
           {project.highlight && (
             <div className="flex items-center gap-2">
-              <span
-                className="px-2 py-0.5 text-xs font-mono rounded-full border"
-                style={{
-                  backgroundColor: "var(--burg-bg)",
-                  color: "var(--burg)",
-                  borderColor: "rgba(122, 11, 36, 0.2)",
-                }}
-              >
-                {project.highlight.label}
-              </span>
+              <Chip label={project.highlight.label} size="sm" />
               <span className="text-sm" style={{ color: "var(--text-4)" }}>
                 {project.highlight.detail}
               </span>
             </div>
           )}
-          {project.url && (
-            <a
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-1.5 text-sm font-mono rounded border transition-colors hover:bg-burg-xl"
-              style={{ color: "var(--burg)", borderColor: "var(--burg)" }}
-            >
-              Ver sitio ↗
-            </a>
-          )}
-          {project.repo && (
-            <a
-              href={project.repo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-1.5 text-sm font-mono rounded border transition-colors hover:bg-burg-xl"
-              style={{ color: "var(--burg)", borderColor: "var(--burg)" }}
-            >
-              Ver código ↗
-            </a>
-          )}
+          {project.url && <ButtonLink href={project.url}>Ver sitio ↗</ButtonLink>}
+          {project.repo && <ButtonLink href={project.repo}>Ver código ↗</ButtonLink>}
         </div>
 
         <p className="text-base leading-relaxed mb-10" style={{ color: "var(--text-3)" }}>

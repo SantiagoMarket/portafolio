@@ -1,4 +1,4 @@
-import Link from "next/link";
+import ButtonLink from "@/components/ui/ButtonLink";
 import Chip from "@/components/ui/Chip";
 import type { Project } from "@/lib/projects";
 
@@ -32,16 +32,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               {project.title}
             </h3>
             {project.highlight && (
-              <span
-                className="px-2 py-0.5 text-xs font-mono rounded-full border"
-                style={{
-                  backgroundColor: "var(--burg-bg)",
-                  color: "var(--burg)",
-                  borderColor: "rgba(122, 11, 36, 0.2)",
-                }}
-              >
-                {project.highlight.label}
-              </span>
+              <Chip label={project.highlight.label} size="sm" />
             )}
           </div>
           <p className="text-base mt-0.5" style={{ color: "var(--text-3)" }}>
@@ -56,13 +47,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
 
         <div className="flex flex-wrap items-center gap-4 pt-1">
-          <Link
-            href={`/proyectos/${project.slug}`}
-            className="text-sm font-mono border rounded px-4 py-1.5 transition-colors hover:bg-burg-xl"
-            style={{ color: "var(--burg)", borderColor: "var(--burg)" }}
-          >
+          <ButtonLink href={`/proyectos/${project.slug}`}>
             Ver proyecto →
-          </Link>
+          </ButtonLink>
           {project.url && (
             <a
               href={project.url}

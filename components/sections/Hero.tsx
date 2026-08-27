@@ -1,4 +1,4 @@
-import Link from "next/link";
+import ButtonLink from "@/components/ui/ButtonLink";
 
 export default function Hero() {
   return (
@@ -45,22 +45,15 @@ export default function Hero() {
           </div>
 
           <div className="flex flex-wrap gap-3 pt-2">
-            <Link
-              href="/#proyectos"
-              className="inline-flex items-center px-5 py-2.5 text-sm font-mono rounded border transition-colors"
-              style={{ backgroundColor: "var(--burg)", borderColor: "var(--burg)", color: "white" }}
-            >
+            <ButtonLink href="/#proyectos" variant="solid" size="lg">
               Ver proyectos →
-            </Link>
-            <a
+            </ButtonLink>
+            <ButtonLink
               href="https://linkedin.com/in/victor-santiago-cubillos-cruz"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-5 py-2.5 text-sm font-mono rounded border transition-colors hover:bg-burg-xl"
-              style={{ color: "var(--burg)", borderColor: "var(--burg)" }}
+              size="lg"
             >
               Ver LinkedIn ↗
-            </a>
+            </ButtonLink>
           </div>
         </div>
       </div>

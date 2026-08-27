@@ -1,3 +1,5 @@
+import Chip from "@/components/ui/Chip";
+
 const education = [
   {
     institution: "Ignia Action Lab",
@@ -44,18 +46,8 @@ export default function Education() {
                   <span className="text-base font-semibold" style={{ color: "var(--text-1)" }}>
                     {institution}
                   </span>
-                  {badge && (
-                    <span
-                      className="px-2 py-0.5 text-xs font-mono rounded-full border"
-                      style={{
-                        backgroundColor: "var(--burg-bg)",
-                        color: "var(--burg)",
-                        borderColor: "rgba(122, 11, 36, 0.2)",
-                      }}
-                    >
-                      {badge}
-                    </span>
-                  )}
+                  {badge && <Chip label={badge} size="sm" />}
+
                 </div>
                 <p className="text-base mt-0.5" style={{ color: "var(--text-3)" }}>
                   {detail}

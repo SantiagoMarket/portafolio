@@ -158,20 +158,11 @@ export default function CalendarPicker({ duration, onSelect }: Props) {
                 <button
                   key={slot}
                   onClick={() => onSelect(selectedDate, slot)}
-                  className="py-3 text-sm font-mono rounded border transition-colors"
-                  style={{
-                    borderColor: "var(--burg)",
-                    color: "var(--burg)",
-                    backgroundColor: "transparent",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "var(--burg)";
-                    e.currentTarget.style.color = "white";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "transparent";
-                    e.currentTarget.style.color = "var(--burg)";
-                  }}
+                  // El hover invierte el botón —se rellena de borgoña— en vez
+                  // de aclararlo, así que no es el mismo que ButtonLink. Lo que
+                  // sí cambia es que el efecto vive en la hoja de estilos y no
+                  // en dos manejadores que mutaban `style` a mano.
+                  className="py-3 text-sm font-mono rounded border transition-colors text-[var(--burg)] border-[var(--burg)] bg-transparent hover:bg-[var(--burg)] hover:text-white"
                 >
                   {slot}
                 </button>

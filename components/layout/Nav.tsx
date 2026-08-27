@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import ButtonLink from "@/components/ui/ButtonLink";
 
 const navLinks = [
   { label: "Perfil", href: "/#perfil" },
@@ -41,10 +42,7 @@ export default function Nav() {
             <Link
               key={href}
               href={resolveHref(href)}
-              className="text-sm transition-colors"
-              style={{ color: "var(--text-3)" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--burg)")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-3)")}
+              className="text-sm transition-colors text-[var(--text-3)] hover:text-[var(--burg)]"
             >
               {label}
             </Link>
@@ -52,15 +50,14 @@ export default function Nav() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link
-            href="/agenda"
-            className="hidden sm:inline-flex items-center px-4 py-2 text-sm font-mono border rounded transition-colors"
-            style={{ color: "var(--burg)", borderColor: "var(--burg)" }}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--burg-xl)")}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
-          >
-            Agenda una llamada
-          </Link>
+          {/* La visibilidad va en el envoltorio: `hidden` y el `inline-flex`
+              de ButtonLink son las dos utilidades de `display`, y cuál gana
+              dependería del orden en que Tailwind las emita. */}
+          <div className="hidden sm:block">
+            <ButtonLink href="/agenda" size="md">
+              Agenda una llamada
+            </ButtonLink>
+          </div>
           {/* El CTA «Ver proyectos →» vivía aquí y se quitó: el nav ya tiene
               «Proyectos» y el Hero repite el mismo botón. Con seis enlaces, los
               976 px útiles del contenedor no daban para los dos botones y

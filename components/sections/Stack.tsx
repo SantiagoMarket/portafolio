@@ -1,44 +1,46 @@
+import SectionHeading from "@/components/ui/SectionHeading";
+
 const categories = [
   { label: "AUTOMATIZACIÓN", tools: ["n8n", "Make", "Zapier"] },
   { label: "CRM & SALES OPS", tools: ["HubSpot", "GoHighLevel", "Clientify"] },
   { label: "DATA & REPORTING", tools: ["Looker Studio"] },
-  { label: "MENSAJERÍA", tools: ["WhatsApp API"] },
-  { label: "DESARROLLO", tools: ["Claude Code", "Vercel", "Supabase"] },
+  { label: "MENSAJERÍA", tools: ["WhatsApp Business API"] },
+  { label: "DESARROLLO", tools: ["Claude Code", "Next.js", "Supabase", "Vercel", "Kotlin"] },
   { label: "PRODUCTIVIDAD", tools: ["Notion"] },
 ];
 
+/**
+ * Clave-valor en una sola columna, no una grilla de bloques: la categoría es
+ * la etiqueta y las herramientas son el valor. Separadas por reglas, sin cajas.
+ */
 export default function Stack() {
   return (
     <section
       id="stack"
       className="border-b"
-      style={{ backgroundColor: "var(--bg)", borderColor: "var(--divider)" }}
+      style={{ backgroundColor: "var(--surface)", borderColor: "var(--divider)" }}
     >
-      <div className="max-w-5xl mx-auto px-6 py-16">
-        <h2
-          className="font-display text-4xl mb-8"
-          style={{ color: "var(--burg)" }}
-        >
-          STACK
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {categories.map(({ label, tools }) => (
-            <div key={label} className="flex flex-col gap-2">
-              <p className="text-sm font-mono font-semibold tracking-wider" style={{ color: "var(--text-2)" }}>
+      <div className="max-w-5xl mx-auto px-6 py-[60px]">
+        <SectionHeading title="STACK" note="herramientas en uso real" />
+        <dl className="grid gap-4">
+          {categories.map(({ label, tools }, i) => (
+            <div
+              key={label}
+              className="grid grid-cols-1 sm:grid-cols-[150px_minmax(0,1fr)] gap-1 sm:gap-3.5 items-start pb-3.5"
+              style={{
+                borderBottom:
+                  i === categories.length - 1 ? "none" : "1px solid var(--divider)",
+              }}
+            >
+              <dt className="text-[11px] font-bold tracking-[0.09em]" style={{ color: "var(--text-4)" }}>
                 {label}
-              </p>
-              <ul className="flex flex-col gap-1">
-                {tools.map((tool) => (
-                  <li key={tool} className="flex items-center gap-2 text-sm" style={{ color: "var(--text-3)" }}>
-                    <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: "var(--burg)" }} />
-                    {tool}
-                  </li>
-                ))}
-              </ul>
+              </dt>
+              <dd className="font-sans text-[15px]" style={{ color: "var(--text-2)" }}>
+                {tools.join(" · ")}
+              </dd>
             </div>
           ))}
-        </div>
+        </dl>
       </div>
     </section>
   );

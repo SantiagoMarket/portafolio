@@ -3,100 +3,86 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import ButtonLink from "@/components/ui/ButtonLink";
 
 const navLinks = [
-  { label: "Perfil", href: "/#perfil" },
-  { label: "Experiencia", href: "/#experiencia" },
-  { label: "Stack", href: "/#stack" },
-  { label: "Proyectos", href: "/#proyectos" },
-  { label: "Hackathons", href: "/#hackathons" },
-  { label: "Contacto", href: "/#contacto" },
+  { label: "hackathons", href: "/#hackathons" },
+  { label: "proyectos", href: "/#proyectos" },
+  { label: "sobre-mí", href: "/#sobre-mi" },
+  { label: "experiencia", href: "/#experiencia" },
+  { label: "stack", href: "/#stack" },
+  { label: "contacto", href: "/#contacto" },
 ];
 
+/**
+ * La barra es un prompt, no una cabecera de landing: punto de estado, usuario y
+ * los enlaces sin mayúsculas. El menú hamburguesa se conserva de la versión
+ * anterior porque en móvil no caben seis enlaces y esconderlos sin más deja la
+ * página sin navegación.
+ */
 export default function Nav() {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const resolveHref = (href: string) =>
-    isHome ? href.replace("/#", "#") : href;
+  const resolveHref = (href: string) => (isHome ? href.replace("/#", "#") : href);
 
   return (
     <header
-      className="sticky top-0 z-50 border-b"
-      style={{ backgroundColor: "var(--bg)", borderColor: "var(--divider)" }}
+      className="sticky top-0 z-50 border-b backdrop-blur"
+      style={{ backgroundColor: "rgba(255,255,255,.9)", borderColor: "var(--divider)" }}
     >
-      <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link
-          href="/"
-          className="font-mono text-sm font-bold tracking-wide"
-          style={{ color: "var(--text-1)" }}
-        >
-          Santiago Cubillos
+      <div className="max-w-5xl mx-auto px-6 h-[52px] flex items-center gap-4 text-xs">
+        <Link href="/" className="flex items-center gap-2.5 min-w-0">
+          <span
+            className="w-[7px] h-[7px] rounded-full flex-shrink-0"
+            style={{ backgroundColor: "var(--burg)" }}
+          />
+          <span className="truncate" style={{ color: "var(--text-4)" }}>
+            santiago@revops:~
+          </span>
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6" aria-label="Navegación principal">
+        <nav className="hidden md:flex items-center gap-[18px] ml-auto" aria-label="Navegación principal">
           {navLinks.map(({ label, href }) => (
             <Link
               key={href}
               href={resolveHref(href)}
-              className="text-sm transition-colors text-[var(--text-3)] hover:text-[var(--burg)]"
+              className="transition-colors hover:text-[var(--burg)]"
+              style={{ color: "var(--text-3)" }}
             >
               {label}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
-          {/* La visibilidad va en el envoltorio: `hidden` y el `inline-flex`
-              de ButtonLink son las dos utilidades de `display`, y cuál gana
-              dependería del orden en que Tailwind las emita. */}
-          <div className="hidden sm:block">
-            <ButtonLink href="/agenda" size="md">
-              Agenda una llamada
-            </ButtonLink>
-          </div>
-          {/* El CTA «Ver proyectos →» vivía aquí y se quitó: el nav ya tiene
-              «Proyectos» y el Hero repite el mismo botón. Con seis enlaces, los
-              976 px útiles del contenedor no daban para los dos botones y
-              «Agenda una llamada» se partía en dos líneas sobre «Contacto». */}
-
-          {/* Hamburger — solo móvil */}
-          <button
-            className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 rounded"
-            aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
-            onClick={() => setMenuOpen((prev) => !prev)}
-          >
-            <span
-              className="block w-5 h-0.5 transition-all duration-200"
-              style={{
-                backgroundColor: "var(--text-1)",
-                transform: menuOpen ? "translateY(4px) rotate(45deg)" : "none",
-              }}
-            />
-            <span
-              className="block w-5 h-0.5 transition-all duration-200"
-              style={{
-                backgroundColor: "var(--text-1)",
-                opacity: menuOpen ? 0 : 1,
-              }}
-            />
-            <span
-              className="block w-5 h-0.5 transition-all duration-200"
-              style={{
-                backgroundColor: "var(--text-1)",
-                transform: menuOpen ? "translateY(-8px) rotate(-45deg)" : "none",
-              }}
-            />
-          </button>
-        </div>
+        <button
+          className="md:hidden ml-auto flex flex-col justify-center items-center w-10 h-10 gap-1.5 rounded"
+          aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
+          onClick={() => setMenuOpen((prev) => !prev)}
+        >
+          <span
+            className="block w-5 h-0.5 transition-all duration-200"
+            style={{
+              backgroundColor: "var(--text-1)",
+              transform: menuOpen ? "translateY(4px) rotate(45deg)" : "none",
+            }}
+          />
+          <span
+            className="block w-5 h-0.5 transition-all duration-200"
+            style={{ backgroundColor: "var(--text-1)", opacity: menuOpen ? 0 : 1 }}
+          />
+          <span
+            className="block w-5 h-0.5 transition-all duration-200"
+            style={{
+              backgroundColor: "var(--text-1)",
+              transform: menuOpen ? "translateY(-8px) rotate(-45deg)" : "none",
+            }}
+          />
+        </button>
       </div>
 
-      {/* Mobile menu panel */}
       {menuOpen && (
         <nav
           id="mobile-menu"

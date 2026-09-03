@@ -1,5 +1,6 @@
+import SectionHeading from "@/components/ui/SectionHeading";
+import ProjectRow from "@/components/ui/ProjectRow";
 import { clientProjects } from "@/lib/projects";
-import ProjectCard from "@/components/ui/ProjectCard";
 
 export default function Projects() {
   return (
@@ -8,19 +9,19 @@ export default function Projects() {
       className="border-b"
       style={{ backgroundColor: "var(--surface)", borderColor: "var(--divider)" }}
     >
-      <div className="max-w-5xl mx-auto px-6 py-16">
-        <h2
-          className="font-display text-4xl mb-8"
-          style={{ color: "var(--burg)" }}
+      <div className="max-w-5xl mx-auto px-6 py-[60px]">
+        <SectionHeading title="PROYECTOS" note="construido para cliente" />
+        <p
+          className="font-sans text-[15px] leading-relaxed max-w-[62ch] -mt-3.5 mb-6"
+          style={{ color: "var(--text-3)" }}
         >
-          PROYECTOS
-        </h2>
+          Aquí lo que importa no es el plazo sino el proceso que resuelve: qué se hacía
+          a mano antes y qué quedó funcionando solo.
+        </p>
 
-        <div className="flex flex-col gap-4">
-          {clientProjects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
-          ))}
-        </div>
+        {clientProjects.map((project) => (
+          <ProjectRow key={project.slug} project={project} />
+        ))}
       </div>
     </section>
   );

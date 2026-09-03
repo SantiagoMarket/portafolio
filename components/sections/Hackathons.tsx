@@ -1,5 +1,6 @@
+import SectionHeading from "@/components/ui/SectionHeading";
+import ProjectRow from "@/components/ui/ProjectRow";
 import { hackathonProjects } from "@/lib/projects";
-import ProjectCard from "@/components/ui/ProjectCard";
 
 export default function Hackathons() {
   return (
@@ -8,20 +9,19 @@ export default function Hackathons() {
       className="border-b"
       style={{ backgroundColor: "var(--bg)", borderColor: "var(--divider)" }}
     >
-      <div className="max-w-5xl mx-auto px-6 py-16">
-        <h2 className="font-display text-4xl mb-2" style={{ color: "var(--burg)" }}>
-          HACKATHONS
-        </h2>
-        <p className="text-base mb-8 max-w-2xl" style={{ color: "var(--text-3)" }}>
+      <div className="max-w-5xl mx-auto px-6 py-[60px]">
+        <SectionHeading title="HACKATHONS" note="abre para ver el flujo" />
+        <p
+          className="font-sans text-[15px] leading-relaxed max-w-[62ch] -mt-3.5 mb-6"
+          style={{ color: "var(--text-3)" }}
+        >
           Producto construido con plazo corto y en equipo. Es donde se ve qué decido
           cuando no hay tiempo para decidirlo todo.
         </p>
 
-        <div className="flex flex-col gap-4">
-          {hackathonProjects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
-          ))}
-        </div>
+        {hackathonProjects.map((project, i) => (
+          <ProjectRow key={project.slug} project={project} defaultOpen={i === 0} />
+        ))}
       </div>
     </section>
   );

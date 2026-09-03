@@ -55,10 +55,13 @@ html {
   scroll-behavior: smooth;
 }
 
+/* El cuerpo va en mono: es lo que hace que la página lea como un log y no
+   como una landing. La prosa larga vuelve a DM Sans con `font-sans`, porque
+   mono a 15px en párrafos de 70ch cansa. */
 body {
   background-color: var(--bg);
   color: var(--text-1);
-  font-family: "DM Sans", sans-serif;
+  font: 400 14px/1.65 "Space Mono", monospace;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -79,4 +82,94 @@ section[id] {
 .meta {
   font-weight: 500;
   color: var(--text-3);
+}
+
+/* Cursor del hero. `prefers-reduced-motion` lo deja fijo en vez de quitarlo:
+   sin él la T final del título queda visualmente coja. */
+.caret {
+  display: inline-block;
+  width: 11px;
+  height: 0.72em;
+  background: var(--burg);
+  margin-left: 0.12em;
+  vertical-align: baseline;
+  animation: caret-blink 1.1s steps(1) infinite;
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── fila de proyecto ────────────────────────────────────────────────
+   El marcador nativo de <details> no se puede estilar con utilidades, y sin
+   marcador nada indicaba que la fila abre. El signo comunica además el
+   estado: + cerrada, − abierta. */
+.proj-row {
+  border-bottom: 1px solid var(--divider);
+}
+
+.proj-row:first-of-type {
+  border-top: 1px solid var(--divider);
+}
+
+.proj-row > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 18px 2px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 16px;
+  gap: 8px 14px;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .proj-row > summary {
+    grid-template-columns: 34px minmax(0, 1fr) auto 16px;
+  }
+}
+
+.proj-row > summary::-webkit-details-marker {
+  display: none;
+}
+
+.proj-row > summary::after {
+  content: "+";
+  font-family: "Space Mono", monospace;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--burg);
+  justify-self: end;
+  line-height: 1;
+  grid-row: 1;
+  grid-column: 2;
+  align-self: start;
+}
+
+@media (min-width: 640px) {
+  .proj-row > summary::after {
+    grid-row: auto;
+    grid-column: auto;
+    align-self: center;
+  }
+}
+
+.proj-row[open] > summary::after {
+  content: "−";
+}
+
+.proj-row > summary:hover .proj-title {
+  color: var(--burg);
 }

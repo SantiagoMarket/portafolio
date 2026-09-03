@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { readSlots, slotsRequestKey, type SlotsResult } from "@/lib/slots";
 
 interface Props {
   duration: 30 | 45;
@@ -26,25 +27,39 @@ export default function CalendarPicker({ duration, onSelect }: Props) {
   const [viewYear, setViewYear] = useState(today.getFullYear());
   const [viewMonth, setViewMonth] = useState(today.getMonth());
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
-  const [slots, setSlots] = useState<string[]>([]);
-  const [loadingSlots, setLoadingSlots] = useState(false);
-  const [slotsError, setSlotsError] = useState(false);
+  const [result, setResult] = useState<SlotsResult | null>(null);
 
+  const requestKey = slotsRequestKey(selectedDate, duration);
+
+  // El estado de carga no se guarda: se deduce de si `result` corresponde a la
+  // petición actual. Así el efecto no fija estado en su cuerpo —lo que
+  // encadenaba renders— y una respuesta que llega tarde no pisa a la nueva.
   useEffect(() => {
-    if (!selectedDate) return;
-    setSlots([]);
-    setSlotsError(false);
-    setLoadingSlots(true);
+    if (!selectedDate || !requestKey) return;
+    let cancelled = false;
 
     fetch(`/api/slots?date=${selectedDate}&duration=${duration}`)
       .then((r) => r.json())
       .then((data) => {
-        if (data.slots) setSlots(data.slots);
-        else setSlotsError(true);
+        if (cancelled) return;
+        setResult({
+          key: requestKey,
+          slots: Array.isArray(data.slots) ? data.slots : null,
+        });
       })
-      .catch(() => setSlotsError(true))
-      .finally(() => setLoadingSlots(false));
-  }, [selectedDate, duration]);
+      .catch(() => {
+        if (!cancelled) setResult({ key: requestKey, slots: null });
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedDate, duration, requestKey]);
+
+  const { loading: loadingSlots, error: slotsError, slots } = readSlots(
+    result,
+    requestKey,
+  );
 
   const firstDayOfMonth = new Date(viewYear, viewMonth, 1).getDay();
   // Ajustar para semana lunes-domingo (JS: 0=Dom → mover Dom al final)

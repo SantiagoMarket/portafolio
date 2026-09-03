@@ -25,6 +25,11 @@ export type Project = {
    * insinuar un podio donde hubo participación.
    */
   highlight?: { label: string; detail: string };
+  /**
+   * Distintivo corto para la fila de la home, cuando `highlight.label` no cabe
+   * en una línea. Sólo se escribe en ese caso: `projectBadge` lo deriva solo.
+   */
+  badge?: { label: string; tone: "award" | "event" };
   result: string;
   description: string;
   details: string[];
@@ -65,6 +70,7 @@ export const projects: Project[] = [
       label: "Colombia Tech Week",
       detail: "Hackathon de 24 horas · Desarrollo de la app Android: geolocalización y comunicación sin internet · 2026",
     },
+    badge: { label: "24 h", tone: "event" },
     result: "Funciona sin cobertura",
     description:
       "En un terremoto la red móvil es lo primero que se cae, y es justo cuando hace falta. En 24 horas el equipo planteó un sistema de alerta temprana con tres piezas —el aviso, la ubicación de quien responde y la comunicación cuando ya no hay red— y yo me encargué de la app Android: las dos últimas. Un disparo remoto abre una pantalla de autorización en el teléfono; el gesto de la persona lanza a la vez una lectura GPS de un solo uso, un aviso al backend y una malla Bluetooth por la que los teléfonos cercanos se retransmiten mensajes entre sí. El aviso por internet y la malla son caminos independientes: la malla se enciende aunque el envío falle, porque quedarse sin red es exactamente el escenario para el que existe el canal directo entre teléfonos.",

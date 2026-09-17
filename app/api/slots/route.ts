@@ -1,11 +1,25 @@
 import { type NextRequest } from "next/server";
 import { z } from "zod";
+import { availableSlots } from "@/lib/booking/availability";
+import {
+  GoogleConfigError,
+  createGoogleCalendarClient,
+  type CalendarClient,
+} from "@/lib/booking/google";
+import { cotDayBounds } from "@/lib/booking/time";
 
 const querySchema = z.object({
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Formato inválido: YYYY-MM-DD"),
 });
 
 export async function GET(request: NextRequest) {
+  return getSlots(request);
+}
+
+export async function getSlots(
+  request: NextRequest,
+  calendar?: CalendarClient,
+) {
   const { searchParams } = request.nextUrl;
   const parsed = querySchema.safeParse({ date: searchParams.get("date") });
 
@@ -15,42 +29,18 @@ export async function GET(request: NextRequest) {
 
   const { date } = parsed.data;
 
-  if (!process.env.N8N_WEBHOOK_SLOTS_URL) {
-    console.error("[GET /api/slots] N8N_WEBHOOK_SLOTS_URL no configurada");
-    return Response.json({ error: "Configuración incompleta" }, { status: 503 });
-  }
-
   try {
-    const res = await fetch(process.env.N8N_WEBHOOK_SLOTS_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
-    });
-
-    if (!res.ok) {
-      console.error("[GET /api/slots] n8n status:", res.status);
-      return Response.json({ error: "Error al obtener disponibilidad" }, { status: 503 });
-    }
-
-    const text = await res.text();
-    if (!text) {
-      console.error("[GET /api/slots] n8n devolvió body vacío — revisar workflow en n8n");
-      return Response.json({ error: "Error al obtener disponibilidad" }, { status: 503 });
-    }
-
-    const data = JSON.parse(text);
-    console.log("[GET /api/slots] n8n raw:", JSON.stringify(data).slice(0, 300));
-
-    // n8n puede devolver array [{slots}] o el objeto directo {slots}
-    const payload = Array.isArray(data) ? data[0] : data;
-    const daySlots: Array<{ startFormatted: string; available: boolean }> =
-      payload?.slots?.[date] ?? [];
-
-    const slots = daySlots.filter((s) => s.available).map((s) => s.startFormatted);
-
+    const client = calendar ?? createGoogleCalendarClient();
+    const { start, end } = cotDayBounds(date);
+    const busy = await client.listBusy(start, end);
+    const slots = availableSlots(date, busy);
     return Response.json({ slots });
   } catch (err) {
+    if (err instanceof GoogleConfigError) {
+      console.error("[GET /api/slots]", err.message);
+      return Response.json({ error: "Configuración incompleta" }, { status: 503 });
+    }
     console.error("[GET /api/slots]", err);
-    return Response.json({ error: "Error de conexión" }, { status: 503 });
+    return Response.json({ error: "Error al obtener disponibilidad" }, { status: 503 });
   }
 }

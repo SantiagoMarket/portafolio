@@ -1,6 +1,17 @@
 import { type NextRequest } from "next/server";
 import { z } from "zod";
 import { Resend } from "resend";
+import {
+  candidateSlotStarts,
+  isSlotFree,
+  isWeekendCivil,
+  slotWindow,
+} from "@/lib/booking/availability";
+import {
+  GoogleConfigError,
+  createGoogleCalendarClient,
+  type CalendarClient,
+} from "@/lib/booking/google";
 import { roleTitle } from "@/lib/profile";
 
 const bodySchema = z.object({
@@ -12,7 +23,9 @@ const bodySchema = z.object({
   time: z.string().regex(/^\d{2}:\d{2}$/),
 });
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResend() {
+  return new Resend(process.env.RESEND_API_KEY);
+}
 
 const MONTHS = [
   "enero","febrero","marzo","abril","mayo","junio",
@@ -172,7 +185,51 @@ function hostEmail(nombre: string, emailAddr: string, empresa: string, motivo: s
 </html>`;
 }
 
+type BookingMailInput = {
+  nombre: string;
+  email: string;
+  empresa: string;
+  motivo: string;
+  date: string;
+  time: string;
+};
+
+export type BookDeps = {
+  calendar?: CalendarClient;
+  sendEmails?: (input: BookingMailInput) => Promise<void>;
+};
+
+async function sendBookingEmails({
+  nombre,
+  email,
+  empresa,
+  motivo,
+  date,
+  time,
+}: BookingMailInput): Promise<void> {
+  const fecha = formatDate(date, time);
+  const resend = getResend();
+  await Promise.all([
+    resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL!,
+      to: email,
+      subject: `Llamada confirmada — ${fecha}`,
+      html: guestEmail(nombre, fecha),
+    }),
+    resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL!,
+      to: process.env.BOOKING_NOTIFY_EMAIL!,
+      subject: `Nueva llamada — ${nombre} (${empresa})`,
+      html: hostEmail(nombre, email, empresa, motivo, fecha),
+    }),
+  ]);
+}
+
 export async function POST(request: NextRequest) {
+  return handleBook(request);
+}
+
+export async function handleBook(request: NextRequest, deps: BookDeps = {}) {
   let body: unknown;
   try {
     body = await request.json();
@@ -186,55 +243,43 @@ export async function POST(request: NextRequest) {
   }
 
   const { nombre, email, empresa, motivo, date, time } = parsed.data;
-
-  // Convertir hora COT (UTC-5) a ISO UTC para n8n
-  const [h, m] = time.split(":").map(Number);
-  const [y, mo, d] = date.split("-").map(Number);
-  const startUTC = new Date(Date.UTC(y, mo - 1, d, h + 5, m, 0));
-  const endUTC = new Date(startUTC.getTime() + 45 * 60 * 1000);
-
-  const payload = {
-    start_time: startUTC.toISOString(),
-    end_time: endUTC.toISOString(),
-    attendees: [email],
-    name: nombre,
-    phone: "",
-    notes: `${empresa} — ${motivo}`,
-    status: "Lead",
-  };
+  const sendEmails = deps.sendEmails ?? sendBookingEmails;
 
   try {
-    const res = await fetch(process.env.N8N_WEBHOOK_BOOK_URL!, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+    const client = deps.calendar ?? createGoogleCalendarClient();
+    const { start, end } = slotWindow(date, time);
+    const busy = await client.listBusy(start, end);
+    const open =
+      !isWeekendCivil(date) &&
+      candidateSlotStarts().includes(time) &&
+      isSlotFree(date, time, busy);
 
-    if (!res.ok) {
-      return Response.json({ error: "Error al confirmar la reserva" }, { status: 503 });
+    if (!open) {
+      return Response.json(
+        { error: "Ese horario ya no está disponible" },
+        { status: 409 },
+      );
     }
+
+    await client.createEvent({
+      start,
+      end,
+      attendeeEmail: email,
+      name: nombre,
+      notes: `${empresa} — ${motivo}`,
+    });
   } catch (err) {
-    console.error("[POST /api/book] n8n", err);
-    return Response.json({ error: "Error de conexión" }, { status: 503 });
+    if (err instanceof GoogleConfigError) {
+      console.error("[POST /api/book]", err.message);
+      return Response.json({ error: "Configuración incompleta" }, { status: 503 });
+    }
+    console.error("[POST /api/book]", err);
+    return Response.json({ error: "Error al confirmar la reserva" }, { status: 503 });
   }
 
-  // Correos — si Resend falla, el evento ya fue creado en n8n
-  const fecha = formatDate(date, time);
+  // Correos — si Resend falla, el evento ya fue creado
   try {
-    await Promise.all([
-      resend.emails.send({
-        from: process.env.RESEND_FROM_EMAIL!,
-        to: email,
-        subject: `Llamada confirmada — ${fecha}`,
-        html: guestEmail(nombre, fecha),
-      }),
-      resend.emails.send({
-        from: process.env.RESEND_FROM_EMAIL!,
-        to: process.env.BOOKING_NOTIFY_EMAIL!,
-        subject: `Nueva llamada — ${nombre} (${empresa})`,
-        html: hostEmail(nombre, email, empresa, motivo, fecha),
-      }),
-    ]);
+    await sendEmails({ nombre, email, empresa, motivo, date, time });
   } catch (err) {
     console.error("[POST /api/book] resend", err);
   }

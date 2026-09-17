@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { civilDateInBogota } from "@/lib/booking/time";
 import { readSlots, slotsRequestKey, type SlotsResult } from "@/lib/slots";
 
 interface Props {
@@ -12,8 +13,10 @@ function getDaysInMonth(year: number, month: number): number {
   return new Date(year, month + 1, 0).getDate();
 }
 
-function toDateString(date: Date): string {
-  return date.toISOString().split("T")[0];
+function gridCivilDate(year: number, month: number, day: number): string {
+  const monthPart = String(month + 1).padStart(2, "0");
+  const dayPart = String(day).padStart(2, "0");
+  return `${year}-${monthPart}-${dayPart}`;
 }
 
 const WEEKDAYS = ["Lu", "Ma", "Mi", "Ju", "Vi", "Sá", "Do"];
@@ -23,9 +26,10 @@ const MONTH_NAMES = [
 ];
 
 export default function CalendarPicker({ duration, onSelect }: Props) {
-  const today = new Date();
-  const [viewYear, setViewYear] = useState(today.getFullYear());
-  const [viewMonth, setViewMonth] = useState(today.getMonth());
+  const todayStr = civilDateInBogota(new Date());
+  const [todayYear, todayMonth] = todayStr.split("-").map(Number);
+  const [viewYear, setViewYear] = useState(todayYear);
+  const [viewMonth, setViewMonth] = useState(todayMonth - 1);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [result, setResult] = useState<SlotsResult | null>(null);
 
@@ -77,8 +81,6 @@ export default function CalendarPicker({ duration, onSelect }: Props) {
     setSelectedDate(null);
   };
 
-  const todayStr = toDateString(today);
-
   return (
     <div className="flex flex-col gap-6">
       {/* Cabecera del mes */}
@@ -119,7 +121,7 @@ export default function CalendarPicker({ duration, onSelect }: Props) {
         {Array.from({ length: daysInMonth }).map((_, i) => {
           const day = i + 1;
           const date = new Date(viewYear, viewMonth, day);
-          const dateStr = toDateString(date);
+          const dateStr = gridCivilDate(viewYear, viewMonth, day);
           const isPast = dateStr < todayStr;
           const isWeekend = date.getDay() === 0 || date.getDay() === 6;
           const isDisabled = isPast || isWeekend;

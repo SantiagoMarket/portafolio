@@ -1,0 +1,28 @@
+﻿=== JUEZ n8n en routes API ===
+Fecha: 2026-09-17
+Comando: Select-String -Path app/api/slots/route.ts,app/api/book/route.ts -Pattern 'N8N_WEBHOOK|n8n'
+
+--- WORKING COPY (esta ronda) ---
+NO MATCH: ni N8N_WEBHOOK ni n8n en app/api/slots/route.ts ni app/api/book/route.ts
+
+--- fetch en las dos routes (working copy) ---
+NO MATCH: ninguna llamada fetch( en las dos routes
+
+--- HEAD (ronda previa / baseline: n8n SI creaba el evento) ---
+git show HEAD:app/api/slots/route.ts | Select-String N8N_WEBHOOK|n8n|fetch
+slots HEAD: if (!process.env.N8N_WEBHOOK_SLOTS_URL) {
+slots HEAD: console.error("[GET /api/slots] N8N_WEBHOOK_SLOTS_URL no configurada");
+slots HEAD: const res = await fetch(process.env.N8N_WEBHOOK_SLOTS_URL, {
+slots HEAD: console.error("[GET /api/slots] n8n status:", res.status);
+slots HEAD: console.error("[GET /api/slots] n8n devolvió body vacío — revisar workflow en n8n");
+slots HEAD: console.log("[GET /api/slots] n8n raw:", JSON.stringify(data).slice(0, 300));
+slots HEAD: // n8n puede devolver array [{slots}] o el objeto directo {slots}
+
+git show HEAD:app/api/book/route.ts | Select-String N8N_WEBHOOK|n8n|fetch
+book HEAD: // Convertir hora COT (UTC-5) a ISO UTC para n8n
+book HEAD: const res = await fetch(process.env.N8N_WEBHOOK_BOOK_URL!, {
+book HEAD: console.error("[POST /api/book] n8n", err);
+book HEAD: // Correos — si Resend falla, el evento ya fue creado en n8n
+
+VEREDICTO JUEZ: un juez que declarara verde "n8n sigue siendo el que crea el evento" FALLA esta ronda (N8N_WEBHOOK ausente en ambas routes).
+Control de juez: HEAD SI contenia N8N_WEBHOOK; esta ronda NO. El mismo patron marcaria ROJA la ronda anterior.

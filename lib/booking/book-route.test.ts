@@ -71,6 +71,17 @@ describe("POST /api/book", () => {
     }
   });
 
+  it('Motivo "test" (4 caracteres) se agenda: sin mínimo 5 ni 10', async () => {
+    const calendar = mockCalendar();
+    const sendEmails = vi.fn();
+    const res = await handleBook(
+      bookRequest({ ...validBody, nombre: "test", empresa: "test", motivo: "test" }),
+      { calendar, sendEmails },
+    );
+    expect(res.status).toBe(200);
+    expect(calendar.createEvent).toHaveBeenCalledTimes(1);
+  });
+
   it("Payload inválido de book → 400, sin Calendar", async () => {
     const calendar = mockCalendar();
     const sendEmails = vi.fn();

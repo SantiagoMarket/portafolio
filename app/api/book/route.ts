@@ -18,7 +18,7 @@ const bodySchema = z.object({
   nombre: z.string().min(2).max(100),
   email: z.string().email(),
   empresa: z.string().min(1).max(100),
-  motivo: z.string().min(10).max(500),
+  motivo: z.string().min(1).max(500),
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   time: z.string().regex(/^\d{2}:\d{2}$/),
 });

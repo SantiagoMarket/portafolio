@@ -1,6 +1,7 @@
 import { type NextRequest } from "next/server";
 import { z } from "zod";
 import { Resend } from "resend";
+import { roleTitle } from "@/lib/profile";
 
 const bodySchema = z.object({
   nombre: z.string().min(2).max(100),
@@ -60,7 +61,7 @@ function guestEmail(nombre: string, fecha: string): string {
       <!-- Header -->
       <tr><td style="background:#111314;border-bottom:1px solid #252A2E;padding:16px 32px;">
         <span class="mono" style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#E8E4DF;">
-          <span style="color:#7A0B24;">Santiago</span> &middot; Automation
+          <span style="color:#7A0B24;">Santiago</span> &middot; ${roleTitle}
         </span>
       </td></tr>
 
@@ -115,7 +116,7 @@ function guestEmail(nombre: string, fecha: string): string {
       <!-- Footer -->
       <tr><td style="background:#0E1012;border-top:1px solid #1E2226;padding:20px 32px;">
         <p class="mono" style="margin:0;font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:#4A4F54;">
-          &copy; 2026 Santiago &middot; Automation Integrator<br>Santiago de Cali, Colombia
+          &copy; 2026 Santiago &middot; ${roleTitle}<br>Santiago de Cali, Colombia
         </p>
       </td></tr>
 

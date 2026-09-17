@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { roleTitle } from "@/lib/profile";
 
 const links = [
   {
@@ -53,7 +54,7 @@ export default function TarjetaPage() {
           className="font-mono text-xs tracking-widest uppercase mb-6"
           style={{ color: "var(--text-3)" }}
         >
-          Automation Integrator
+          {roleTitle}
         </p>
 
         {/* Foto */}

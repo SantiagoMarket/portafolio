@@ -1,4 +1,5 @@
 import SectionHeading from "@/components/ui/SectionHeading";
+import { roleTitle } from "@/lib/profile";
 
 export default function About() {
   return (
@@ -17,8 +18,8 @@ export default function About() {
             integraciones para que los procesos funcionen solos.
           </p>
           <p className="font-sans text-base leading-[1.75]" style={{ color: "var(--text-3)" }}>
-            Año y medio especializándome en RevOps, con experiencia en agencia y
-            proyectos propios.
+            Año y medio especializándome como {roleTitle}, con experiencia en
+            agencia y proyectos propios.
           </p>
         </div>
       </div>

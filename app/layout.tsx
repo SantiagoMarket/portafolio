@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { documentTitle, roleKeywords } from "@/lib/profile";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Santiago Cubillos — RevOps & Automation Specialist",
+  title: documentTitle,
   description:
     "Conecto procesos de negocio, CRMs y automatizaciones para que los equipos de ventas y marketing operen sin fricción.",
-  keywords: ["RevOps", "Automation", "CRM", "HubSpot", "n8n", "Make", "Bogotá"],
+  keywords: roleKeywords,
 };
 
 export default function RootLayout({

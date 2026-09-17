@@ -1,4 +1,5 @@
 import ButtonLink from "@/components/ui/ButtonLink";
+import { roleTitleLines } from "@/lib/profile";
 
 export default function Hero() {
   return (
@@ -16,9 +17,9 @@ export default function Hero() {
           className="font-display font-normal leading-[0.92] tracking-wide break-words mb-1.5 text-[clamp(38px,10.5vw,110px)]"
           style={{ color: "var(--text-1)" }}
         >
-          REVOPS &amp;<br />
-          <span style={{ color: "var(--burg)" }}>AUTOMATION</span> SPECIALIST
-          {/* Pegado a la T final el cursor se leía como una I: «SPECIALISTI». */}
+          {roleTitleLines[0]}
+          <br />
+          <span style={{ color: "var(--burg)" }}>{roleTitleLines[1]}</span>
           <span className="caret" aria-hidden="true" />
         </h1>
 

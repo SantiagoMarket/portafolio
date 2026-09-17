@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { shellPrompt } from "@/lib/profile";
 
 const navLinks = [
   { label: "hackathons", href: "/#hackathons" },
@@ -38,7 +39,7 @@ export default function Nav() {
             style={{ backgroundColor: "var(--burg)" }}
           />
           <span className="truncate" style={{ color: "var(--text-4)" }}>
-            santiago@revops:~
+            {shellPrompt}
           </span>
         </Link>
 

@@ -1,7 +1,7 @@
 import { metrics } from "@/lib/metrics";
 
 /**
- * Cuatro cifras separadas por reglas, sin tarjetas: es lo primero que se
+ * Tres cifras separadas por reglas, sin tarjetas: es lo primero que se
  * escanea. Va fuera de `section` porque no es una sección con título, es una
  * franja de cierre del hero.
  */
@@ -9,17 +9,13 @@ export default function Metrics() {
   return (
     <div className="max-w-5xl mx-auto px-6">
       <dl
-        className="grid grid-cols-2 md:grid-cols-4 border-b"
+        className="grid grid-cols-3 border-b"
         style={{ borderColor: "var(--divider)" }}
       >
-        {metrics.map((metric, i) => (
+        {metrics.map((metric) => (
           <div
             key={metric.label}
-            className={[
-              "px-5 py-6 border-r last:border-r-0",
-              i % 2 === 1 ? "border-r-0 md:border-r" : "",
-              i < 2 ? "border-b md:border-b-0" : "",
-            ].join(" ")}
+            className="px-5 py-6 border-r last:border-r-0"
             style={{ borderColor: "var(--divider)" }}
           >
             <dd

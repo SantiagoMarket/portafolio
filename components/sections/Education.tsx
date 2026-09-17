@@ -1,18 +1,6 @@
 import SectionHeading from "@/components/ui/SectionHeading";
 import Entry from "@/components/ui/Entry";
-
-const education = [
-  {
-    institution: "Ignia Action Lab",
-    detail: "Programa práctico de automatización",
-    period: "12 semanas · 2026 · Bogotá, Colombia",
-  },
-  {
-    institution: "Platzi",
-    detail: "Automatización de procesos · CRM e integraciones",
-    period: undefined,
-  },
-];
+import { education } from "@/lib/site-copy";
 
 export default function Education() {
   return (

@@ -1,0 +1,31 @@
+# unique frames — Chrome CDP contra http://localhost:3005
+# reproducir: node notas/mediciones/2026-09-17_typewriter-hero/evidencia/capture-typewriter.mjs
+# crudo: browser-samples.json
+
+## motion (prefers-reduced-motion: no)
+t=1     aria="SYSTEMS INTEGRATOR"  visible=""                    burg=""
+t=971   aria="SYSTEMS INTEGRATOR"  visible="S"                   burg=""
+t=1051  aria="SYSTEMS INTEGRATOR"  visible="SY"                  burg=""
+t=1096  aria="SYSTEMS INTEGRATOR"  visible="SYS"                 burg=""
+t=1171  aria="SYSTEMS INTEGRATOR"  visible="SYST"                burg=""
+t=1255  aria="SYSTEMS INTEGRATOR"  visible="SYSTE"               burg=""
+t=1331  aria="SYSTEMS INTEGRATOR"  visible="SYSTEM"              burg=""
+t=1417  aria="SYSTEMS INTEGRATOR"  visible="SYSTEMS"             burg=""
+t=1491  aria="SYSTEMS INTEGRATOR"  visible="SYSTEMS | I"         burg="I"
+t=1571  aria="SYSTEMS INTEGRATOR"  visible="SYSTEMS | IN"        burg="IN"
+t=1653  aria="SYSTEMS INTEGRATOR"  visible="SYSTEMS | INT"       burg="INT"
+t=1705  aria="SYSTEMS INTEGRATOR"  visible="SYSTEMS | INTE"      burg="INTE"
+t=1771  aria="SYSTEMS INTEGRATOR"  visible="SYSTEMS | INTEG"     burg="INTEG"
+t=1852  aria="SYSTEMS INTEGRATOR"  visible="SYSTEMS | INTEGR"    burg="INTEGR"
+t=1935  aria="SYSTEMS INTEGRATOR"  visible="SYSTEMS | INTEGRA"   burg="INTEGRA"
+t=2016  aria="SYSTEMS INTEGRATOR"  visible="SYSTEMS | INTEGRAT"  burg="INTEGRAT"
+t=2094  aria="SYSTEMS INTEGRATOR"  visible="SYSTEMS | INTEGRATO" burg="INTEGRATO"
+t=2170  aria="SYSTEMS INTEGRATOR"  visible="SYSTEMS | INTEGRATOR" burg="INTEGRATOR"
+# innerText final = "SYSTEMS\nINTEGRATOR" (no INTEGRATORI)
+# caret: span.caret vacío aria-hidden, 1 caret, parent burg al terminar
+
+## reduced-motion emulate
+t=0     aria="SYSTEMS INTEGRATOR"  visible=""
+t=242   aria="SYSTEMS INTEGRATOR"  visible="SYSTEMS | INTEGRATOR"  burg="INTEGRATOR"
+# no hay frames intermedios (no tipeo carácter a carácter)
+# hay flash vacío ~242ms (SSR/hidratación, reducedMotion arranca false hasta el useEffect)

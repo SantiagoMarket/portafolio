@@ -1,4 +1,5 @@
 import ButtonLink from "@/components/ui/ButtonLink";
+import TypedHeading from "@/components/ui/TypedHeading";
 import { roleTitleLines } from "@/lib/profile";
 
 export default function Hero() {
@@ -13,15 +14,7 @@ export default function Hero() {
           <b style={{ color: "var(--burg)" }}>$</b> whoami --role --location
         </p>
 
-        <h1
-          className="font-display font-normal leading-[0.92] tracking-wide break-words mb-1.5 text-[clamp(38px,10.5vw,110px)]"
-          style={{ color: "var(--text-1)" }}
-        >
-          {roleTitleLines[0]}
-          <br />
-          <span style={{ color: "var(--burg)" }}>{roleTitleLines[1]}</span>
-          <span className="caret" aria-hidden="true" />
-        </h1>
+        <TypedHeading lines={roleTitleLines} />
 
         <p
           className="font-sans text-[17px] leading-relaxed max-w-[54ch] mt-5 mb-[26px]"

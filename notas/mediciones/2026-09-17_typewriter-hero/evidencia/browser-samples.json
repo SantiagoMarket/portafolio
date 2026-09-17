@@ -1,0 +1,256 @@
+{
+  "pageUrl": "http://localhost:3005/?measure=typewriter",
+  "chrome": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+  "capturedAt": "2026-09-17T19:13:39.497Z",
+  "motion": {
+    "result": {
+      "type": "object",
+      "value": {
+        "sampleCount": 56,
+        "unique": [
+          {
+            "t": 1,
+            "aria": "SYSTEMS INTEGRATOR",
+            "visibleText": "\n",
+            "visibleCollapsed": " | ",
+            "line1Guess": "",
+            "burgText": "",
+            "caretCount": 1,
+            "caretParent": "plain",
+            "innerHTML": "<span class=\"caret\" aria-hidden=\"true\"></span><br><span style=\"color:var(--burg)\"></span>"
+          },
+          {
+            "t": 971,
+            "aria": "SYSTEMS INTEGRATOR",
+            "visibleText": "S\n",
+            "visibleCollapsed": "S | ",
+            "line1Guess": "S",
+            "burgText": "",
+            "caretCount": 1,
+            "caretParent": "plain",
+            "innerHTML": "S<span class=\"caret\" aria-hidden=\"true\"></span><br><span style=\"color:var(--burg)\"></span>"
+          },
+          {
+            "t": 1051,
+            "aria": "SYSTEMS INTEGRATOR",
+            "visibleText": "SY\n",
+            "visibleCollapsed": "SY | ",
+            "line1Guess": "SY",
+            "burgText": "",
+            "caretCount": 1,
+            "caretParent": "plain",
+            "innerHTML": "SY<span class=\"caret\" aria-hidden=\"true\"></span><br><span style=\"color:var(--burg)\"></span>"
+          },
+          {
+            "t": 1096,
+            "aria": "SYSTEMS INTEGRATOR",
+            "visibleText": "SYS\n",
+            "visibleCollapsed": "SYS | ",
+            "line1Guess": "SYS",
+            "burgText": "",
+            "caretCount": 1,
+            "caretParent": "plain",
+            "innerHTML": "SYS<span class=\"caret\" aria-hidden=\"true\"></span><br><span style=\"color:var(--burg)\"></span>"
+          },
+          {
+            "t": 1171,
+            "aria": "SYSTEMS INTEGRATOR",
+            "visibleText": "SYST\n",
+            "visibleCollapsed": "SYST | ",
+            "line1Guess": "SYST",
+            "burgText": "",
+            "caretCount": 1,
+            "caretParent": "plain",
+            "innerHTML": "SYST<span class=\"caret\" aria-hidden=\"true\"></span><br><span style=\"color:var(--burg)\"></span>"
+          },
+          {
+            "t": 1255,
+            "aria": "SYSTEMS INTEGRATOR",
+            "visibleText": "SYSTE\n",
+            "visibleCollapsed": "SYSTE | ",
+            "line1Guess": "SYSTE",
+            "burgText": "",
+            "caretCount": 1,
+            "caretParent": "plain",
+            "innerHTML": "SYSTE<span class=\"caret\" aria-hidden=\"true\"></span><br><span style=\"color:var(--burg)\"></span>"
+          },
+          {
+            "t": 1331,
+            "aria": "SYSTEMS INTEGRATOR",
+            "visibleText": "SYSTEM\n",
+            "visibleCollapsed": "SYSTEM | ",
+            "line1Guess": "SYSTEM",
+            "burgText": "",
+            "caretCount": 1,
+            "caretParent": "plain",
+            "innerHTML": "SYSTEM<span class=\"caret\" aria-hidden=\"true\"></span><br><span style=\"color:var(--burg)\"></span>"
+          },
+          {
+            "t": 1417,
+            "aria": "SYSTEMS INTEGRATOR",
+            "visibleText": "SYSTEMS\n",
+            "visibleCollapsed": "SYSTEMS | ",
+            "line1Guess": "SYSTEMS",
+            "burgText": "",
+            "caretCount": 1,
+            "caretParent": "plain",
+            "innerHTML": "SYSTEMS<span class=\"caret\" aria-hidden=\"true\"></span><br><span style=\"color:var(--burg)\"></span>"
+          },
+          {
+            "t": 1491,
+            "aria": "SYSTEMS INTEGRATOR",
+            "visibleText": "SYSTEMS\nI",
+            "visibleCollapsed": "SYSTEMS | I",
+            "line1Guess": "SYSTEMS",
+            "burgText": "I",
+            "caretCount": 1,
+            "caretParent": "burg",
+            "innerHTML": "SYSTEMS<br><span style=\"color:var(--burg)\">I<span class=\"caret\" aria-hidden=\"true\"></span></span>"
+          },
+          {
+            "t": 1571,
+            "aria": "SYSTEMS INTEGRATOR",
+            "visibleText": "SYSTEMS\nIN",
+            "visibleCollapsed": "SYSTEMS | IN",
+            "line1Guess": "SYSTEMS",
+            "burgText": "IN",
+            "caretCount": 1,
+            "caretParent": "burg",
+            "innerHTML": "SYSTEMS<br><span style=\"color:var(--burg)\">IN<span class=\"caret\" aria-hidden=\"true\"></span></span>"
+          },
+          {
+            "t": 1653,
+            "aria": "SYSTEMS INTEGRATOR",
+            "visibleText": "SYSTEMS\nINT",
+            "visibleCollapsed": "SYSTEMS | INT",
+            "line1Guess": "SYSTEMS",
+            "burgText": "INT",
+            "caretCount": 1,
+            "caretParent": "burg",
+            "innerHTML": "SYSTEMS<br><span style=\"color:var(--burg)\">INT<span class=\"caret\" aria-hidden=\"true\"></span></span>"
+          },
+          {
+            "t": 1705,
+            "aria": "SYSTEMS INTEGRATOR",
+            "visibleText": "SYSTEMS\nINTE",
+            "visibleCollapsed": "SYSTEMS | INTE",
+            "line1Guess": "SYSTEMS",
+            "burgText": "INTE",
+            "caretCount": 1,
+            "caretParent": "burg",
+            "innerHTML": "SYSTEMS<br><span style=\"color:var(--burg)\">INTE<span class=\"caret\" aria-hidden=\"true\"></span></span>"
+          },
+          {
+            "t": 1771,
+            "aria": "SYSTEMS INTEGRATOR",
+            "visibleText": "SYSTEMS\nINTEG",
+            "visibleCollapsed": "SYSTEMS | INTEG",
+            "line1Guess": "SYSTEMS",
+            "burgText": "INTEG",
+            "caretCount": 1,
+            "caretParent": "burg",
+            "innerHTML": "SYSTEMS<br><span style=\"color:var(--burg)\">INTEG<span class=\"caret\" aria-hidden=\"true\"></span></span>"
+          },
+          {
+            "t": 1852,
+            "aria": "SYSTEMS INTEGRATOR",
+            "visibleText": "SYSTEMS\nINTEGR",
+            "visibleCollapsed": "SYSTEMS | INTEGR",
+            "line1Guess": "SYSTEMS",
+            "burgText": "INTEGR",
+            "caretCount": 1,
+            "caretParent": "burg",
+            "innerHTML": "SYSTEMS<br><span style=\"color:var(--burg)\">INTEGR<span class=\"caret\" aria-hidden=\"true\"></span></span>"
+          },
+          {
+            "t": 1935,
+            "aria": "SYSTEMS INTEGRATOR",
+            "visibleText": "SYSTEMS\nINTEGRA",
+            "visibleCollapsed": "SYSTEMS | INTEGRA",
+            "line1Guess": "SYSTEMS",
+            "burgText": "INTEGRA",
+            "caretCount": 1,
+            "caretParent": "burg",
+            "innerHTML": "SYSTEMS<br><span style=\"color:var(--burg)\">INTEGRA<span class=\"caret\" aria-hidden=\"true\"></span></span>"
+          },
+          {
+            "t": 2016,
+            "aria": "SYSTEMS INTEGRATOR",
+            "visibleText": "SYSTEMS\nINTEGRAT",
+            "visibleCollapsed": "SYSTEMS | INTEGRAT",
+            "line1Guess": "SYSTEMS",
+            "burgText": "INTEGRAT",
+            "caretCount": 1,
+            "caretParent": "burg",
+            "innerHTML": "SYSTEMS<br><span style=\"color:var(--burg)\">INTEGRAT<span class=\"caret\" aria-hidden=\"true\"></span></span>"
+          },
+          {
+            "t": 2094,
+            "aria": "SYSTEMS INTEGRATOR",
+            "visibleText": "SYSTEMS\nINTEGRATO",
+            "visibleCollapsed": "SYSTEMS | INTEGRATO",
+            "line1Guess": "SYSTEMS",
+            "burgText": "INTEGRATO",
+            "caretCount": 1,
+            "caretParent": "burg",
+            "innerHTML": "SYSTEMS<br><span style=\"color:var(--burg)\">INTEGRATO<span class=\"caret\" aria-hidden=\"true\"></span></span>"
+          },
+          {
+            "t": 2170,
+            "aria": "SYSTEMS INTEGRATOR",
+            "visibleText": "SYSTEMS\nINTEGRATOR",
+            "visibleCollapsed": "SYSTEMS | INTEGRATOR",
+            "line1Guess": "SYSTEMS",
+            "burgText": "INTEGRATOR",
+            "caretCount": 1,
+            "caretParent": "burg",
+            "innerHTML": "SYSTEMS<br><span style=\"color:var(--burg)\">INTEGRATOR<span class=\"caret\" aria-hidden=\"true\"></span></span>"
+          }
+        ]
+      }
+    }
+  },
+  "reducedMotion": {
+    "result": {
+      "type": "object",
+      "value": {
+        "sampleCount": 64,
+        "unique": [
+          {
+            "t": 0,
+            "aria": "SYSTEMS INTEGRATOR",
+            "visibleText": "\n",
+            "visibleCollapsed": " | ",
+            "line1Guess": "",
+            "burgText": "",
+            "caretCount": 1,
+            "caretParent": "plain",
+            "innerHTML": "<span class=\"caret\" aria-hidden=\"true\"></span><br><span style=\"color:var(--burg)\"></span>"
+          },
+          {
+            "t": 242,
+            "aria": "SYSTEMS INTEGRATOR",
+            "visibleText": "SYSTEMS\nINTEGRATOR",
+            "visibleCollapsed": "SYSTEMS | INTEGRATOR",
+            "line1Guess": "SYSTEMS",
+            "burgText": "INTEGRATOR",
+            "caretCount": 1,
+            "caretParent": "burg",
+            "innerHTML": "SYSTEMS<br><span style=\"color:var(--burg)\">INTEGRATOR<span class=\"caret\" aria-hidden=\"true\"></span></span>"
+          }
+        ]
+      }
+    }
+  },
+  "midSample": {
+    "t": 971,
+    "aria": "SYSTEMS INTEGRATOR",
+    "visibleText": "S\n",
+    "visibleCollapsed": "S | ",
+    "line1Guess": "S",
+    "burgText": "",
+    "caretCount": 1,
+    "caretParent": "plain",
+    "innerHTML": "S<span class=\"caret\" aria-hidden=\"true\"></span><br><span style=\"color:var(--burg)\"></span>"
+  }
+}

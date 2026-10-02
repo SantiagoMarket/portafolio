@@ -39,8 +39,7 @@ export default function TypedHeading({ lines }: TypedHeadingProps) {
 
   return (
     <h1
-      className="font-display font-normal leading-[0.92] tracking-wide break-words mb-1.5 text-[clamp(38px,10.5vw,110px)]"
-      style={{ color: "var(--text-1)" }}
+      className="font-display font-normal text-hero leading-[0.92] tracking-wide break-words mb-1.5 text-text-1"
       aria-label={lines.join(" ")}
     >
       <span aria-hidden="true">
@@ -52,7 +51,7 @@ export default function TypedHeading({ lines }: TypedHeadingProps) {
             ) : null;
           const typed =
             index === lines.length - 1 ? (
-              <span style={{ color: "var(--burg)" }}>
+              <span className="text-burg">
                 {text}
                 {caret}
               </span>

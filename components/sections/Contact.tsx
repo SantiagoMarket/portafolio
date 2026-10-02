@@ -21,8 +21,8 @@ const channels = [
 
 export default function Contact() {
   return (
-    <footer id="contacto" style={{ backgroundColor: "var(--bg-alt)" }}>
-      <div className="max-w-5xl mx-auto px-6 pt-14 pb-[70px]">
+    <footer id="contacto">
+      <div className="max-w-5xl mx-auto px-6 py-24">
         <SectionHeading title="CONTACTO" note="disponible para roles full-time en LATAM" />
 
         {/* El horario es contexto de la acción, no parte del botón: dentro
@@ -31,35 +31,29 @@ export default function Contact() {
           <ButtonLink href="/agenda" variant="solid" size="lg">
             Agenda una llamada →
           </ButtonLink>
-          <span className="text-xs" style={{ color: "var(--text-4)" }}>
+          <span className="font-mono text-meta text-text-3">
             30 o 45 min · Google Meet · gratis
           </span>
         </div>
 
-        <div className="grid gap-3 mt-[26px]">
+        <div className="grid gap-3 mt-8">
           {channels.map(({ label, href, display }) => (
             <a
               key={label}
               href={href}
               target={href.startsWith("mailto") ? undefined : "_blank"}
               rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-              className="group grid grid-cols-[96px_minmax(0,1fr)] gap-3.5 py-2.5 border-b"
-              style={{ borderColor: "var(--divider)" }}
+              className="group grid grid-cols-[96px_minmax(0,1fr)] gap-3.5 py-2.5"
             >
-              <span className="text-[11px]" style={{ color: "var(--text-4)" }}>
-                {label}
-              </span>
-              <span
-                className="font-sans text-sm transition-colors group-hover:text-[var(--burg)]"
-                style={{ color: "var(--text-2)" }}
-              >
+              <span className="font-mono text-meta text-text-3">{label}</span>
+              <span className="font-sans text-body text-text-2 transition-colors group-hover:text-burg">
                 {display}
               </span>
             </a>
           ))}
         </div>
 
-        <p className="mt-8 text-[11px]" style={{ color: "var(--text-4)" }}>
+        <p className="mt-8 font-mono text-meta text-text-3">
           exit 0 — Víctor Santiago Cubillos Cruz · Bogotá
         </p>
       </div>

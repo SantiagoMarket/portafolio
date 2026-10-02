@@ -10,12 +10,8 @@ const achievements = [
 
 export default function Experience() {
   return (
-    <section
-      id="experiencia"
-      className="border-b"
-      style={{ backgroundColor: "var(--surface)", borderColor: "var(--divider)" }}
-    >
-      <div className="max-w-5xl mx-auto px-6 py-[60px]">
+    <section id="experiencia">
+      <div className="max-w-5xl mx-auto px-6 py-24">
         <SectionHeading title="EXPERIENCIA" />
         <Entry
           first

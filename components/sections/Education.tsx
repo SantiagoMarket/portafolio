@@ -4,12 +4,8 @@ import { education } from "@/lib/site-copy";
 
 export default function Education() {
   return (
-    <section
-      id="formacion"
-      className="border-b"
-      style={{ backgroundColor: "var(--bg)", borderColor: "var(--divider)" }}
-    >
-      <div className="max-w-5xl mx-auto px-6 py-[60px]">
+    <section id="formacion">
+      <div className="max-w-5xl mx-auto px-6 py-24">
         <SectionHeading title="FORMACIÓN" />
         {education.map(({ institution, detail, period }, i) => (
           <Entry

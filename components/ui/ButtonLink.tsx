@@ -20,26 +20,12 @@ const sizeClasses: Record<ButtonSize, string> = {
 };
 
 const variantClasses: Record<ButtonVariant, string> = {
-  // `bg-burg-xl` es el borgoña más claro del tema (`globals.css`), no un color suelto.
-  outline: "hover:bg-burg-xl",
-  solid: "",
-};
-
-const variantStyles: Record<ButtonVariant, React.CSSProperties> = {
-  outline: { color: "var(--burg)", borderColor: "var(--burg)" },
-  solid: { backgroundColor: "var(--burg)", borderColor: "var(--burg)", color: "white" },
+  outline: "text-burg border-burg hover:bg-burg-xl",
+  solid: "bg-burg border-burg text-white",
 };
 
 /**
- * El botón de borde borgoña, que estaba repetido en seis archivos con tres
- * tamaños y dos formas distintas de resolver el mismo hover: unas con Tailwind
- * y otras mutando `style.backgroundColor` desde `onMouseEnter`. La versión en
- * JS dejaba el estado del hover fuera de la hoja de estilos, donde no se puede
- * ni inspeccionar ni sobreescribir.
- *
- * Un enlace externo se abre en otra pestaña y no pasa por el router: se decide
- * por el propio href, para que ningún sitio de uso pueda olvidarse el
- * `rel="noopener"`.
+ * El botón de borde borgoña: control con `border` a secas, no divisor de sección.
  */
 export default function ButtonLink({
   href,
@@ -49,7 +35,7 @@ export default function ButtonLink({
   className = "",
 }: ButtonLinkProps) {
   const classes = [
-    "inline-flex items-center text-sm font-mono rounded border transition-colors",
+    "inline-flex items-center text-body font-mono rounded border transition-colors",
     sizeClasses[size],
     variantClasses[variant],
     className,
@@ -59,20 +45,14 @@ export default function ButtonLink({
 
   if (href.startsWith("http")) {
     return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={classes}
-        style={variantStyles[variant]}
-      >
+      <a href={href} target="_blank" rel="noopener noreferrer" className={classes}>
         {children}
       </a>
     );
   }
 
   return (
-    <Link href={href} className={classes} style={variantStyles[variant]}>
+    <Link href={href} className={classes}>
       {children}
     </Link>
   );

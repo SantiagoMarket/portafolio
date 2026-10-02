@@ -7,6 +7,14 @@
   --font-sans: "DM Sans", sans-serif;
   --font-mono: "Space Mono", monospace;
 
+  /* Escala tipográfica de la home */
+  --text-meta: 0.75rem;
+  --text-body: 1rem;
+  --text-title: 1.125rem;
+  --text-section: 2.25rem;
+  --text-figure: 2.5rem;
+  --text-hero: clamp(3rem, 8vw, 5.25rem);
+
   /* Fondos */
   --color-bg: #FFFFFF;
   --color-bg-alt: #FAFAF8;
@@ -29,20 +37,20 @@
 }
 
 :root {
-  --bg: #FFFFFF;
-  --bg-alt: #FAFAF8;
-  --surface: #F5F2EF;
-  --border: #F0EDE9;
-  --divider: #E8E4DF;
-  --text-1: #111314;
-  --text-2: #2E343A;
-  --text-3: #4A4F54;
-  --text-4: #7A7570;
-  --burg: #7A0B24;
-  --burg-h: #9B0E2E;
-  --burg-s: #C4405A;
-  --burg-bg: #F0D6DC;
-  --burg-xl: #F9EEF1;
+  --bg: var(--color-bg);
+  --bg-alt: var(--color-bg-alt);
+  --surface: var(--color-surface);
+  --border: var(--color-border);
+  --divider: var(--color-divider);
+  --text-1: var(--color-text-1);
+  --text-2: var(--color-text-2);
+  --text-3: var(--color-text-3);
+  --text-4: var(--color-text-4);
+  --burg: var(--color-burg);
+  --burg-h: var(--color-burg-h);
+  --burg-s: var(--color-burg-s);
+  --burg-bg: var(--color-burg-bg);
+  --burg-xl: var(--color-burg-xl);
 }
 
 *,
@@ -55,14 +63,19 @@ html {
   scroll-behavior: smooth;
 }
 
-/* El cuerpo va en mono: es lo que hace que la página lea como un log y no
-   como una landing. La prosa larga vuelve a DM Sans con `font-sans`, porque
-   mono a 15px en párrafos de 70ch cansa. */
+/* Cuerpo en DM Sans: la prosa es la voz por defecto. Mono queda en prompt,
+   nav, notas y etiquetas. */
 body {
-  background-color: var(--bg);
-  color: var(--text-1);
-  font: 400 14px/1.65 "Space Mono", monospace;
+  background: var(--color-surface);
+  color: var(--color-text-1);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+}
+
+.measure {
+  max-width: 66ch;
 }
 
 /* Offset para que las secciones no queden tapadas por el nav sticky (h-16 = 64px) */
@@ -118,11 +131,7 @@ section[id] {
    marcador nada indicaba que la fila abre. El signo comunica además el
    estado: + cerrada, − abierta. */
 .proj-row {
-  border-bottom: 1px solid var(--divider);
-}
-
-.proj-row:first-of-type {
-  border-top: 1px solid var(--divider);
+  border-bottom: 1px solid var(--color-divider);
 }
 
 .proj-row > summary {

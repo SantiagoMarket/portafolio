@@ -1,30 +1,20 @@
 type SectionHeadingProps = {
   title: string;
-  /** Anotación a la derecha de la regla: dice qué esperar de la sección. */
+  /** Anotación a la derecha: dice qué esperar de la sección. */
   note?: string;
 };
 
 /**
- * El encabezado no es una caja: es un título, una regla que ocupa el resto del
- * ancho y una nota al final. La regla separa sin encerrar.
+ * Título de sección y nota opcional. Separación con espacio, no con regla.
  */
 export default function SectionHeading({ title, note }: SectionHeadingProps) {
   return (
-    <div className="flex items-baseline gap-3.5 mb-7">
-      <h2
-        className="font-display text-4xl leading-none tracking-wide"
-        style={{ color: "var(--burg)" }}
-      >
+    <div className="flex flex-wrap items-baseline gap-x-3.5 gap-y-1 mb-8">
+      <h2 className="font-display text-section leading-none tracking-wide text-burg">
         {title}
       </h2>
-      <hr
-        className="flex-1 border-0 border-t border-dashed"
-        style={{ borderColor: "var(--divider)" }}
-      />
       {note && (
-        <em className="not-italic font-mono text-[11px]" style={{ color: "var(--text-4)" }}>
-          {note}
-        </em>
+        <em className="not-italic font-mono text-meta text-text-3">{note}</em>
       )}
     </div>
   );

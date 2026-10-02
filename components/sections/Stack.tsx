@@ -2,34 +2,24 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import { stackCategories } from "@/lib/site-copy";
 
 /**
- * Clave-valor en una sola columna, no una grilla de bloques: la categoría es
- * la etiqueta y las herramientas son el valor. Separadas por reglas, sin cajas.
+ * Clave-valor en una sola columna: la categoría es la etiqueta y las
+ * herramientas son el valor. Separadas por espacio, sin reglas ni cajas.
  */
 export default function Stack() {
   return (
-    <section
-      id="stack"
-      className="border-b"
-      style={{ backgroundColor: "var(--surface)", borderColor: "var(--divider)" }}
-    >
-      <div className="max-w-5xl mx-auto px-6 py-[60px]">
+    <section id="stack">
+      <div className="max-w-5xl mx-auto px-6 py-24">
         <SectionHeading title="STACK" note="herramientas en uso real" />
-        <dl className="grid gap-4">
-          {stackCategories.map(({ label, tools }, i) => (
+        <dl className="grid gap-6">
+          {stackCategories.map(({ label, tools }) => (
             <div
               key={label}
-              className="grid grid-cols-1 sm:grid-cols-[150px_minmax(0,1fr)] gap-1 sm:gap-3.5 items-start pb-3.5"
-              style={{
-                borderBottom:
-                  i === stackCategories.length - 1 ? "none" : "1px solid var(--divider)",
-              }}
+              className="grid grid-cols-1 sm:grid-cols-[150px_minmax(0,1fr)] gap-1 sm:gap-3.5 items-start"
             >
-              <dt className="text-[11px] font-bold tracking-[0.09em]" style={{ color: "var(--text-4)" }}>
+              <dt className="font-mono text-meta font-bold tracking-[0.09em] text-text-3">
                 {label}
               </dt>
-              <dd className="font-sans text-[15px]" style={{ color: "var(--text-2)" }}>
-                {tools.join(" · ")}
-              </dd>
+              <dd className="font-sans text-body text-text-2">{tools.join(" · ")}</dd>
             </div>
           ))}
         </dl>

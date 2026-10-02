@@ -54,6 +54,15 @@ describe("projectBadge", () => {
   });
 });
 
+describe("proyectos propios", () => {
+  it("se marcan como PROPIO, no como HACKATHON", () => {
+    expect(projectBadge({ ...base, kind: "personal" })).toEqual({
+      label: "PROPIO",
+      tone: "client",
+    });
+  });
+});
+
 describe("los datos reales producen badges usables", () => {
   it("ningún badge sale vacío", () => {
     for (const p of projects) {

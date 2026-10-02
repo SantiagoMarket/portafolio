@@ -2,6 +2,7 @@ import Nav from "@/components/layout/Nav";
 import Hero from "@/components/sections/Hero";
 import Metrics from "@/components/sections/Metrics";
 import Hackathons from "@/components/sections/Hackathons";
+import PersonalProjects from "@/components/sections/PersonalProjects";
 import Projects from "@/components/sections/Projects";
 import About from "@/components/sections/About";
 import Experience from "@/components/sections/Experience";
@@ -18,9 +19,12 @@ export default function HomePage() {
     <>
       <Nav />
       <main>
-        <Hero />
-        <Metrics />
+        <div className="bg-bg">
+          <Hero />
+          <Metrics />
+        </div>
         <Hackathons />
+        <PersonalProjects />
         <Projects />
         <About />
         <Experience />

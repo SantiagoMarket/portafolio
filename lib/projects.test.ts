@@ -6,6 +6,7 @@ import {
   getProjectBySlug,
   getProjectsByKind,
   hackathonProjects,
+  personalProjects,
   projects,
 } from "./projects";
 
@@ -38,10 +39,15 @@ describe("separación por tipo", () => {
 
   // Si un proyecto nuevo se quedara sin `kind` válido desaparecería de la
   // página sin error: no rompe nada, simplemente no se ve.
-  it("cada proyecto cae en exactamente una de las dos listas", () => {
-    expect(hackathonProjects.length + clientProjects.length).toBe(
-      projects.length,
-    );
+  it("cada proyecto cae en exactamente una de las tres listas", () => {
+    expect(
+      hackathonProjects.length + clientProjects.length + personalProjects.length,
+    ).toBe(projects.length);
+  });
+
+  it("los proyectos propios son sólo el asistente local", () => {
+    expect(personalProjects.map((p) => p.slug)).toEqual(["asistente-ia-local"]);
+    expect(getProjectsByKind("personal").every((p) => p.kind === "personal")).toBe(true);
   });
 
   it("un tipo sin proyectos devuelve lista vacía, no undefined", () => {
@@ -58,7 +64,7 @@ describe("integridad de los datos", () => {
   });
 
   it("la numeración es continua y sin huecos", () => {
-    expect(projects.map((p) => p.number)).toEqual(["01", "02", "03", "04", "05"]);
+    expect(projects.map((p) => p.number)).toEqual(["01", "02", "03", "04", "05", "06", "07"]);
   });
 
   // El fallo propio de este diseño: los proyectos son datos y las rutas son
@@ -118,5 +124,77 @@ describe("integridad de los datos", () => {
       expect(p.result.trim()).not.toBe("");
       expect(p.details.length).toBeGreaterThan(0);
     }
+  });
+});
+
+describe("proyectos nuevos", () => {
+  it.each([
+    ["agente-rag-pacientes", "cliente", "06"],
+    ["asistente-ia-local", "personal", "07"],
+  ] as const)("%s existe como %s con número %s y tiene página", (slug, kind, number) => {
+    const project = getProjectBySlug(slug);
+    expect(project?.kind).toBe(kind);
+    expect(project?.number).toBe(number);
+    expect(
+      existsSync(join(__dirname, "..", "app", "proyectos", slug, "page.tsx")),
+    ).toBe(true);
+  });
+});
+
+function textos(p: (typeof projects)[number]): string[] {
+  return [
+    p.slug,
+    p.title,
+    p.tagline,
+    p.result,
+    p.description,
+    p.url ?? "",
+    p.repo ?? "",
+    p.highlight?.label ?? "",
+    p.highlight?.detail ?? "",
+    p.badge?.label ?? "",
+    ...p.stack,
+    ...p.details,
+  ];
+}
+
+describe("guard de datos sensibles", () => {
+  // Nombres de clientes, proveedores y del equipo propio: no se publican en
+  // ninguna ficha.
+  const IDENTIFICABLES = ["nieves", "kommo", "supermainds", "lenovo"];
+
+  it("ningún proyecto publica datos identificables", () => {
+    for (const p of projects) {
+      const texto = textos(p).join(" ").toLowerCase();
+      for (const termino of IDENTIFICABLES) {
+        expect(texto, `${p.slug} contiene ${termino}`).not.toContain(termino);
+      }
+    }
+  });
+
+  // Requisito para estas dos fichas: se describen por lo que hacen, no por
+  // el proveedor o el modelo concreto que las implementa.
+  const TECNICOS = ["supabase", "openai", "pgvector", "phi-4", "openvino"];
+
+  it.each(["agente-rag-pacientes", "asistente-ia-local"])(
+    "%s no publica detalles técnicos de implementación",
+    (slug) => {
+      const project = getProjectBySlug(slug);
+      expect(project).toBeDefined();
+      const texto = textos(project!).join(" ").toLowerCase();
+      for (const termino of TECNICOS) {
+        expect(texto, `${slug} contiene ${termino}`).not.toContain(termino);
+      }
+    },
+  );
+
+  it("el guard detecta un término sin importar mayúsculas", () => {
+    const texto = textos({
+      ...projects[0],
+      tagline: "Hecho con PGVector",
+    })
+      .join(" ")
+      .toLowerCase();
+    expect(texto).toContain("pgvector");
   });
 });

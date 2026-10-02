@@ -15,6 +15,11 @@ export function projectBadge(project: Project): Badge {
   if (project.kind === "cliente") {
     return { label: "CLIENTE", tone: "client" };
   }
+  // Sin cliente ni evento: el tono neutro, y una etiqueta propia para que no
+  // caiga en HACKATHON al final de la función.
+  if (project.kind === "personal") {
+    return { label: "PROPIO", tone: "client" };
+  }
   // `badge` gana sobre `highlight` porque `highlight.label` a veces es el
   // nombre del evento ("Colombia Tech Week") y no cabe en una línea.
   if (project.badge) {

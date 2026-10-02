@@ -4,10 +4,11 @@
  *
  * `kind` separa dos contextos que no se comparan entre sí: lo construido para
  * un cliente, donde lo que importa es el proceso que resuelve, y lo construido
- * en un hackathon, donde importan el plazo y el equipo. La numeración es
- * continua entre ambos para que no haya dos "01".
+ * en un hackathon, donde importan el plazo y el equipo. "personal" es lo
+ * construido por iniciativa propia, sin cliente ni evento. La numeración es
+ * continua entre todos para que no haya dos "01".
  */
-export type ProjectKind = "hackathon" | "cliente";
+export type ProjectKind = "hackathon" | "cliente" | "personal";
 
 export type Project = {
   slug: string;
@@ -138,6 +139,43 @@ export const projects: Project[] = [
       "Disparo de secuencia de seguimiento personalizada",
     ],
   },
+  {
+    slug: "agente-rag-pacientes",
+    number: "06",
+    kind: "cliente",
+    title: "Agente IA de Atención al Paciente",
+    tagline: "Agente de IA con RAG que atiende pacientes por WhatsApp",
+    stack: ["Embeddings", "RAG", "Búsqueda vectorial", "Agentes de IA", "WhatsApp"],
+    result: "Respuestas solo desde conocimiento autorizado",
+    description:
+      "Agente conversacional para una clínica que responde a pacientes usando recuperación semántica sobre una base de conocimiento propia: cada pregunta se convierte en embedding, se buscan las fichas más cercanas y el modelo solo puede responder con el contenido autorizado por la clínica.",
+    details: [
+      "Base de conocimiento editable por personal no técnico, re-indexada automáticamente cada noche",
+      "Recuperación por similitud semántica de las fichas más relevantes para cada mensaje",
+      "Reglas de seguridad clínica: no diagnostica, escala síntomas graves y no confirma servicios inexistentes",
+      "Derivación a un asesor humano con resumen de la conversación",
+      "Captura progresiva de datos del paciente durante la conversación",
+      "Validado con un plan de pruebas de aceptación de más de 120 casos",
+    ],
+  },
+  {
+    slug: "asistente-ia-local",
+    number: "07",
+    kind: "personal",
+    title: "Asistente de IA Local",
+    tagline: "Asistente de IA 100% local, privado y sin nube",
+    stack: ["LLM local", "NPU", "Agentes de IA", "Python"],
+    result: "Cero datos fuera del equipo",
+    description:
+      "Asistente de IA que corre completamente en el portátil, sobre la unidad de procesamiento neuronal (NPU), sin enviar información a servicios externos. Incluye un agente capaz de crear documentos y organizar archivos de forma segura.",
+    details: [
+      "Modelo de lenguaje ejecutado en la NPU del equipo, sin conexión a la nube",
+      "Agente que redacta documentos (PDF, Word, Excel) y organiza archivos por contenido",
+      "Toda acción requiere confirmación; el modelo nunca ejecuta comandos directamente",
+      "Nada se borra en firme: cualquier eliminación va a la papelera y los planes se revierten si fallan",
+      "Comparativa medida de varios modelos (velocidad, memoria, calidad) antes de elegir el definitivo",
+    ],
+  },
 ];
 
 export function getProjectBySlug(slug: string): Project | undefined {
@@ -150,3 +188,4 @@ export function getProjectsByKind(kind: ProjectKind): Project[] {
 
 export const hackathonProjects = getProjectsByKind("hackathon");
 export const clientProjects = getProjectsByKind("cliente");
+export const personalProjects = getProjectsByKind("personal");

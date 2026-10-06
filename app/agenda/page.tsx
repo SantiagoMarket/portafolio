@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import Nav from "@/components/layout/Nav";
 import CalendarPicker from "@/components/agenda/CalendarPicker";
 import BookingForm from "@/components/agenda/BookingForm";
@@ -111,6 +112,13 @@ export default function AgendaPage() {
               />
             )}
           </div>
+
+          <p className="mt-6 text-sm" style={{ color: "var(--text-4)" }}>
+            Tus datos solo se usan para agendar la llamada.{" "}
+            <Link href="/privacidad" className="underline">
+              Privacidad
+            </Link>
+          </p>
         </div>
       </main>
     </>

@@ -12,6 +12,7 @@ import {
   createGoogleCalendarClient,
   type CalendarClient,
 } from "@/lib/booking/google";
+import { safeErrorMessage } from "@/lib/booking/error-log";
 import { roleTitle } from "@/lib/profile";
 
 const bodySchema = z.object({
@@ -273,7 +274,7 @@ export async function handleBook(request: NextRequest, deps: BookDeps = {}) {
       console.error("[POST /api/book]", err.message);
       return Response.json({ error: "Configuración incompleta" }, { status: 503 });
     }
-    console.error("[POST /api/book]", err);
+    console.error("[POST /api/book]", safeErrorMessage(err));
     return Response.json({ error: "Error al confirmar la reserva" }, { status: 503 });
   }
 
@@ -281,7 +282,7 @@ export async function handleBook(request: NextRequest, deps: BookDeps = {}) {
   try {
     await sendEmails({ nombre, email, empresa, motivo, date, time });
   } catch (err) {
-    console.error("[POST /api/book] resend", err);
+    console.error("[POST /api/book] resend", safeErrorMessage(err));
   }
 
   return Response.json({ success: true });

@@ -6,6 +6,7 @@ import {
   createGoogleCalendarClient,
   type CalendarClient,
 } from "@/lib/booking/google";
+import { safeErrorMessage } from "@/lib/booking/error-log";
 import { cotDayBounds } from "@/lib/booking/time";
 
 const querySchema = z.object({
@@ -40,7 +41,7 @@ export async function getSlots(
       console.error("[GET /api/slots]", err.message);
       return Response.json({ error: "Configuración incompleta" }, { status: 503 });
     }
-    console.error("[GET /api/slots]", err);
+    console.error("[GET /api/slots]", safeErrorMessage(err));
     return Response.json({ error: "Error al obtener disponibilidad" }, { status: 503 });
   }
 }

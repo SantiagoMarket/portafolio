@@ -35,7 +35,7 @@ export default function ButtonLink({
   className = "",
 }: ButtonLinkProps) {
   const classes = [
-    "inline-flex items-center text-body font-mono rounded border transition-colors",
+    "inline-flex items-center text-body font-sans rounded border transition-colors",
     sizeClasses[size],
     variantClasses[variant],
     className,

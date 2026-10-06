@@ -6,11 +6,11 @@ import { usePathname } from "next/navigation";
 import { shellPrompt } from "@/lib/profile";
 
 const navLinks = [
-  { label: "hackathons", href: "/#hackathons" },
-  { label: "propios", href: "/#proyectos-propios" },
   { label: "proyectos", href: "/#proyectos" },
+  { label: "hackathons", href: "/#hackathons" },
+  { label: "clientes", href: "/#clientes" },
+  { label: "propios", href: "/#propios" },
   { label: "sobre-mí", href: "/#sobre-mi" },
-  { label: "experiencia", href: "/#experiencia" },
   { label: "stack", href: "/#stack" },
   { label: "contacto", href: "/#contacto" },
 ];
@@ -29,7 +29,7 @@ export default function Nav() {
   const resolveHref = (href: string) => (isHome ? href.replace("/#", "#") : href);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-divider backdrop-blur bg-bg/90 font-mono">
+    <header className="sticky top-0 z-50 border-b border-divider backdrop-blur bg-bg/90 font-sans">
       <div className="max-w-5xl mx-auto px-6 h-14 flex items-center gap-4 text-meta">
         <Link href="/" className="flex items-center gap-2.5 min-w-0">
           <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-burg" />

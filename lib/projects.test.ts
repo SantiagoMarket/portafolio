@@ -5,6 +5,7 @@ import {
   clientProjects,
   getProjectBySlug,
   getProjectsByKind,
+  homeSummary,
   hackathonProjects,
   personalProjects,
   projects,
@@ -196,5 +197,31 @@ describe("guard de datos sensibles", () => {
       .join(" ")
       .toLowerCase();
     expect(texto).toContain("pgvector");
+  });
+});
+
+describe("copy alineado con la home", () => {
+  it("el resultado de CRM + WhatsApp dice la hora con espacio y sin barra", () => {
+    expect(getProjectBySlug("crm-whatsapp")?.result).toBe("~1 h manual ahorrada por cliente");
+  });
+
+  it("el cotizador escribe «vía» con tilde", () => {
+    const detalles = getProjectBySlug("cotizador")!.details.join(" ");
+    expect(detalles).toContain("vía Make");
+    expect(detalles).not.toMatch(/\bvia\b/);
+  });
+
+  // La home recorta la descripción de CBS; la ficha conserva la completa.
+  it("CBS tiene un resumen más corto que su descripción", () => {
+    const cbs = getProjectBySlug("cbs-alert-mesh")!;
+    expect(cbs.summary).toBeDefined();
+    expect(cbs.summary!.length).toBeLessThan(cbs.description.length);
+    expect(cbs.summary).not.toContain("Un disparo remoto");
+  });
+
+  it("homeSummary usa la descripción cuando no hay resumen", () => {
+    const komared = getProjectBySlug("komared")!;
+    expect(komared.summary).toBeUndefined();
+    expect(homeSummary(komared)).toBe(komared.description);
   });
 });

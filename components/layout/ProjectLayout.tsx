@@ -14,8 +14,8 @@ export default function ProjectLayout({ project }: ProjectLayoutProps) {
       <Nav />
       <main className="max-w-3xl mx-auto px-6 py-16">
         <Link
-          href="/#proyectos"
-          className="inline-flex items-center gap-1 text-sm font-mono mb-10 transition-colors hover:underline"
+          href={`/#${project.slug}`}
+          className="inline-flex items-center gap-1 text-sm font-sans mb-10 transition-colors hover:underline"
           style={{ color: "var(--text-4)" }}
         >
           ← Volver a proyectos
@@ -40,7 +40,7 @@ export default function ProjectLayout({ project }: ProjectLayoutProps) {
           style={{ borderColor: "var(--divider)" }}
         >
           <span
-            className="px-3 py-1 text-sm font-mono rounded border"
+            className="px-3 py-1 text-sm font-sans rounded border"
             style={{
               backgroundColor: "var(--burg-bg)",
               color: "var(--burg)",
@@ -76,7 +76,7 @@ export default function ProjectLayout({ project }: ProjectLayoutProps) {
             {project.details.map((item, i) => (
               <li key={i} className="flex items-start gap-3 text-sm" style={{ color: "var(--text-3)" }}>
                 <span
-                  className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-xs font-mono font-bold"
+                  className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-xs font-sans font-bold"
                   style={{ backgroundColor: "var(--burg-bg)", color: "var(--burg)" }}
                 >
                   {i + 1}

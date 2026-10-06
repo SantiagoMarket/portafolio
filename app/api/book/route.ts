@@ -55,10 +55,10 @@ function guestEmail(nombre: string, fecha: string): string {
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Llamada confirmada · Santiago</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Overpass:wght@400;600;700&display=swap');
   * { box-sizing: border-box; }
-  body { margin: 0; padding: 0; background: #0E1012; font-family: 'DM Sans', Arial, sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
-  .mono { font-family: 'Space Mono', 'Courier New', monospace; }
+  body { margin: 0; padding: 0; background: #0E1012; font-family: 'Overpass', 'Segoe UI', Arial, sans-serif; font-weight: 400; -webkit-font-smoothing: antialiased; }
+  .mono { font-family: 'Overpass', 'Segoe UI', Arial, sans-serif; }
   a { color: #C4405A; text-decoration: none; }
   @media only screen and (max-width: 600px) {
     .wrapper { width: 100% !important; }

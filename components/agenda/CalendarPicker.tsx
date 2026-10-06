@@ -93,7 +93,7 @@ export default function CalendarPicker({ duration, onSelect }: Props) {
         >
           ←
         </button>
-        <span className="font-mono font-bold" style={{ color: "var(--text-1)" }}>
+        <span className="font-sans font-bold" style={{ color: "var(--text-1)" }}>
           {MONTH_NAMES[viewMonth]} {viewYear}
         </span>
         <button
@@ -109,7 +109,7 @@ export default function CalendarPicker({ duration, onSelect }: Props) {
       {/* Grid días */}
       <div className="grid grid-cols-7 gap-1 text-center">
         {WEEKDAYS.map((d) => (
-          <span key={d} className="text-xs font-mono pb-1" style={{ color: "var(--text-4)" }}>
+          <span key={d} className="text-xs font-sans pb-1" style={{ color: "var(--text-4)" }}>
             {d}
           </span>
         ))}
@@ -153,7 +153,7 @@ export default function CalendarPicker({ duration, onSelect }: Props) {
       {/* Slots de hora */}
       {selectedDate && (
         <div>
-          <p className="text-sm font-mono mb-3" style={{ color: "var(--text-3)" }}>
+          <p className="text-sm font-sans mb-3" style={{ color: "var(--text-3)" }}>
             Horas disponibles
           </p>
           {loadingSlots && (
@@ -179,7 +179,7 @@ export default function CalendarPicker({ duration, onSelect }: Props) {
                   // de aclararlo, así que no es el mismo que ButtonLink. Lo que
                   // sí cambia es que el efecto vive en la hoja de estilos y no
                   // en dos manejadores que mutaban `style` a mano.
-                  className="py-3 text-sm font-mono rounded border transition-colors text-[var(--burg)] border-[var(--burg)] bg-transparent hover:bg-[var(--burg)] hover:text-white"
+                  className="py-3 text-sm font-sans rounded border transition-colors text-[var(--burg)] border-[var(--burg)] bg-transparent hover:bg-[var(--burg)] hover:text-white"
                 >
                   {slot}
                 </button>

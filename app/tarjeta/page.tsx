@@ -51,7 +51,7 @@ export default function TarjetaPage() {
 
         {/* Subtítulo */}
         <p
-          className="font-mono text-xs tracking-widest uppercase mb-6"
+          className="font-sans text-xs tracking-widest uppercase mb-6"
           style={{ color: "var(--text-3)" }}
         >
           {roleTitle}
@@ -77,7 +77,7 @@ export default function TarjetaPage() {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 px-4 py-3.5 rounded-lg border font-mono text-sm transition-colors active:scale-[0.98]"
+              className="flex items-center gap-3 px-4 py-3.5 rounded-lg border font-sans text-sm transition-colors active:scale-[0.98]"
               style={{
                 backgroundColor: "var(--bg)",
                 borderColor: "var(--divider)",

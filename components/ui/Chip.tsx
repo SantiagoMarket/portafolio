@@ -19,7 +19,7 @@ const sizeClasses: Record<ChipSize, string> = {
 export default function Chip({ label, size = "md" }: ChipProps) {
   return (
     <span
-      className={`inline-block font-mono rounded-full border ${sizeClasses[size]}`}
+      className={`inline-block font-sans rounded-full border ${sizeClasses[size]}`}
       style={{
         backgroundColor: "var(--burg-bg)",
         color: "var(--burg)",

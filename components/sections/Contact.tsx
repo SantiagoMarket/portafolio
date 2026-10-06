@@ -1,60 +1,73 @@
-import SectionHeading from "@/components/ui/SectionHeading";
-import ButtonLink from "@/components/ui/ButtonLink";
+import Link from "next/link";
+import Icon from "@/components/ui/Icon";
+import { contact } from "@/lib/site-copy";
 
 const channels = [
   {
-    label: "EMAIL",
+    label: "Email",
     href: "mailto:sant4cubillos@outlook.com",
     display: "sant4cubillos@outlook.com",
+    icon: "mail",
   },
   {
-    label: "LINKEDIN",
+    label: "LinkedIn",
     href: "https://linkedin.com/in/victor-santiago-cubillos-cruz",
-    display: "victor-santiago-cubillos-cruz ↗",
+    display: "victor-santiago-cubillos-cruz",
+    icon: "out",
   },
   {
-    label: "GITHUB",
+    label: "GitHub",
     href: "https://github.com/SantiagoMarket",
-    display: "github.com/SantiagoMarket ↗",
+    display: "github.com/SantiagoMarket",
+    icon: "out",
   },
-];
+] as const;
+
+/** "full-time" no se parte en dos líneas: se lee como una sola palabra. */
+const [headLead, headTail] = contact.headline.split("full-time");
 
 export default function Contact() {
   return (
-    <footer id="contacto">
-      <div className="max-w-5xl mx-auto px-6 py-24">
-        <SectionHeading title="CONTACTO" note="disponible para roles full-time en LATAM" />
-
-        {/* El horario es contexto de la acción, no parte del botón: dentro
-            inflaba el área clicable y competía con la etiqueta. */}
-        <div className="flex flex-wrap items-center gap-4">
-          <ButtonLink href="/agenda" variant="solid" size="lg">
-            Agenda una llamada →
-          </ButtonLink>
-          <span className="font-mono text-meta text-text-3">
-            30 o 45 min · Google Meet · gratis
+    <footer className="on-burg contact" id="contacto">
+      <div className="wrap">
+        <div className="contact-grid">
+          <div>
+            <h2>
+              {headLead}
+              <span className="whitespace-nowrap">full-time</span>
+              {headTail}
+            </h2>
+            <div className="actions">
+              <Link className="btn btn--light" href="/agenda">
+                {contact.cta}
+              </Link>
+            </div>
+            <p className="contact-note">{contact.note}</p>
+          </div>
+          <ul className="channels">
+            {channels.map(({ label, href, display, icon }) => {
+              const external = !href.startsWith("mailto");
+              return (
+                <li key={label}>
+                  <a
+                    href={href}
+                    target={external ? "_blank" : undefined}
+                    rel={external ? "noopener noreferrer" : undefined}
+                  >
+                    <span className="k">{label}</span>
+                    <span className="v">{display}</span>
+                    <Icon name={icon} />
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <p className="contact-end">
+          <span>
+            Víctor Santiago Cubillos Cruz <span className="sep" aria-hidden="true">·</span> Bogotá
           </span>
-        </div>
-
-        <div className="grid gap-3 mt-8">
-          {channels.map(({ label, href, display }) => (
-            <a
-              key={label}
-              href={href}
-              target={href.startsWith("mailto") ? undefined : "_blank"}
-              rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-              className="group grid grid-cols-[96px_minmax(0,1fr)] gap-3.5 py-2.5"
-            >
-              <span className="font-mono text-meta text-text-3">{label}</span>
-              <span className="font-sans text-body text-text-2 transition-colors group-hover:text-burg">
-                {display}
-              </span>
-            </a>
-          ))}
-        </div>
-
-        <p className="mt-8 font-mono text-meta text-text-3">
-          exit 0 — Víctor Santiago Cubillos Cruz · Bogotá
+          <a href="#top">Volver al mapa</a>
         </p>
       </div>
     </footer>

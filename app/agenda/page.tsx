@@ -44,7 +44,7 @@ export default function AgendaPage() {
 
           {/* Encabezado */}
           <div className="mb-10">
-            <p className="text-sm font-mono mb-2" style={{ color: "var(--burg)" }}>
+            <p className="text-sm font-sans mb-2" style={{ color: "var(--burg)" }}>
               soysantiago.com/agenda
             </p>
             <h1 className="font-display text-4xl mb-3" style={{ color: "var(--text-1)" }}>
@@ -62,7 +62,7 @@ export default function AgendaPage() {
                 {([1, 2] as const).map((n) => (
                   <div key={n} className="flex items-center gap-2">
                     <div
-                      className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-mono font-bold"
+                      className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-sans font-bold"
                       style={{
                         backgroundColor: n <= stepNumber ? "var(--burg)" : "var(--divider)",
                         color: n <= stepNumber ? "white" : "var(--text-4)",

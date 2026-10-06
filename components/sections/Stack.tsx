@@ -1,28 +1,47 @@
-import SectionHeading from "@/components/ui/SectionHeading";
-import { stackCategories } from "@/lib/site-copy";
+import { stackIntro } from "@/lib/site-copy";
+import { stackIndex } from "@/lib/stack-index";
 
 /**
- * Clave-valor en una sola columna: la categoría es la etiqueta y las
- * herramientas son el valor. Separadas por espacio, sin reglas ni cajas.
+ * Índice de estaciones: cada herramienta lleva los números de los proyectos
+ * de la home donde aparece, y cada número salta a su línea.
  */
 export default function Stack() {
   return (
-    <section id="stack">
-      <div className="max-w-5xl mx-auto px-6 py-24">
-        <SectionHeading title="STACK" note="herramientas en uso real" />
-        <dl className="grid gap-6">
-          {stackCategories.map(({ label, tools }) => (
-            <div
-              key={label}
-              className="grid grid-cols-1 sm:grid-cols-[150px_minmax(0,1fr)] gap-1 sm:gap-3.5 items-start"
-            >
-              <dt className="font-mono text-meta font-bold tracking-[0.09em] text-text-3">
-                {label}
-              </dt>
-              <dd className="font-sans text-body text-text-2">{tools.join(" · ")}</dd>
-            </div>
+    <section className="sec" id="stack" aria-labelledby="stack-h">
+      <div className="wrap">
+        <div className="sec-head">
+          <h2 id="stack-h">Stack</h2>
+          <p>{stackIntro}</p>
+        </div>
+        <div className="index">
+          {stackIndex.map(({ label, entries }) => (
+            <section key={label} aria-label={label}>
+              <h3>{label}</h3>
+              <ul>
+                {entries.map(({ tool, projects, note }) => (
+                  <li key={tool}>
+                    {tool}
+                    {projects.length > 0 && (
+                      <span className="lines">
+                        {projects.map((p) => (
+                          <a
+                            key={p.slug}
+                            href={`#${p.slug}`}
+                            aria-label={`Proyecto ${Number(p.number)}: ${p.title}`}
+                            title={p.title}
+                          >
+                            {Number(p.number)}
+                          </a>
+                        ))}
+                      </span>
+                    )}
+                    {note && <span className="none">{note}</span>}
+                  </li>
+                ))}
+              </ul>
+            </section>
           ))}
-        </dl>
+        </div>
       </div>
     </section>
   );

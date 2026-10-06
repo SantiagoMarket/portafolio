@@ -57,7 +57,7 @@ export default function MeetPage() {
                 {([1, 2] as const).map((n) => (
                   <div key={n} className="flex items-center gap-2">
                     <div
-                      className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-mono font-bold"
+                      className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-sans font-bold"
                       style={{
                         backgroundColor: n <= stepNumber ? "var(--burg)" : "var(--divider)",
                         color: n <= stepNumber ? "white" : "var(--text-4)",

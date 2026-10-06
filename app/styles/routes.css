@@ -1,0 +1,319 @@
+/* Proyectos: cada uno es una línea del mapa con su ficha (`.line-entry`) y su
+   recorrido (`.route`). Los grupos —hackathons, clientes, propio— cambian la
+   densidad, no el sistema. */
+@layer components {
+  .group + .group {
+    margin-top: var(--s10);
+  }
+
+  .group-head {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--s7);
+    align-items: baseline;
+    margin-bottom: var(--s6);
+  }
+
+  .group-head h2 {
+    font-size: clamp(2.5rem, 4.6vw, 3.75rem);
+    font-weight: 800;
+    line-height: 0.92;
+    text-transform: uppercase;
+    color: var(--burg);
+  }
+
+  .group-head p {
+    margin: 0;
+    max-width: 52ch;
+    color: var(--ink-2);
+    font-size: 1.125rem;
+  }
+
+  /* ---------- ficha de proyecto ---------- */
+  .line-entry {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--s7);
+    padding-block: var(--s8);
+    border-top: 1px solid var(--rule);
+    scroll-margin-top: var(--s5);
+  }
+
+  .line-entry:last-child {
+    padding-bottom: 0;
+  }
+
+  .le-head {
+    align-self: start;
+    position: sticky;
+    top: var(--s6);
+  }
+
+  .le-num {
+    display: inline-grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--burg);
+    color: var(--white);
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.75rem;
+    line-height: 1;
+    padding-top: 0.08em;
+  }
+
+  .line-entry--own .le-num {
+    background: var(--paper);
+    color: var(--burg);
+    box-shadow: inset 0 0 0 3px var(--burg);
+  }
+
+  .le-head h3 {
+    font-size: clamp(2.25rem, 3.6vw, 3.25rem);
+    font-weight: 800;
+    line-height: 0.95;
+    margin: var(--s5) 0 var(--s3);
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+
+  .le-tag {
+    margin: 0 0 var(--s5);
+    color: var(--ink-2);
+    font-size: 1.0625rem;
+    max-width: 36ch;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: var(--s1) var(--s3) 2px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.8125rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .badge--award {
+    background: var(--burg);
+    color: var(--white);
+  }
+
+  .badge--event {
+    box-shadow: inset 0 0 0 2px var(--burg);
+    color: var(--burg);
+  }
+
+  .badge--client {
+    box-shadow: inset 0 0 0 1.5px var(--ink-2);
+    color: var(--ink-2);
+  }
+
+  .le-facts {
+    margin: var(--s5) 0 0;
+    display: grid;
+    gap: var(--s3);
+    font-size: 0.9375rem;
+  }
+
+  .le-facts div {
+    display: grid;
+    gap: 2px;
+  }
+
+  .le-facts dt {
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .le-facts dd {
+    margin: 0;
+    color: var(--ink-2);
+  }
+
+  .le-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s2) var(--s5);
+    margin-top: var(--s5);
+  }
+
+  /* Enlace de texto borgoña: externos y "Ver ficha completa" */
+  .ext {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    color: var(--burg);
+    text-decoration: underline;
+    padding-block: var(--s2);
+  }
+
+  .ext:hover {
+    color: var(--burg-2);
+    text-decoration-thickness: 2.5px;
+  }
+
+  .le-body > p {
+    margin: 0 0 var(--s6);
+    max-width: 68ch;
+    font-size: 1.125rem;
+    line-height: 1.65;
+  }
+
+  /* ---------- recorrido: el diagrama de línea del proyecto ---------- */
+  .route {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-width: 68ch;
+  }
+
+  .route li {
+    position: relative;
+    padding: 0 0 var(--s5) 44px;
+    color: var(--ink);
+  }
+
+  .route li::before {
+    content: "";
+    position: absolute;
+    left: 9px;
+    top: 12px;
+    bottom: -12px;
+    width: 5px;
+    background: var(--burg);
+    border-radius: 3px;
+  }
+
+  .route li:last-child {
+    padding-bottom: 0;
+  }
+
+  .route li:last-child::before {
+    display: none;
+  }
+
+  .route li::after {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 5px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: var(--paper);
+    box-shadow: inset 0 0 0 4px var(--burg);
+  }
+
+  .route li:first-child::after,
+  .route li:last-child::after {
+    background: var(--burg);
+  }
+
+  /* Cada recorrido repite el trazo de su línea en el mapa. La ficha lleva
+     `data-route="<slug>"`; así el estilo no depende del id del ancla. */
+  [data-route="cbs-alert-mesh"] .route li::before {
+    background: var(--burg-2);
+  }
+
+  [data-route="cotizador"] .route li::before,
+  [data-route="agendamiento"] .route li::before {
+    width: 7px;
+    left: 8px;
+    background: linear-gradient(90deg, var(--burg) 0 2px, transparent 2px 5px, var(--burg) 5px);
+  }
+
+  [data-route="crm-whatsapp"] .route li::before {
+    background: linear-gradient(var(--burg) 0 14px, transparent 14px) 0 0 / 5px 19px repeat-y;
+  }
+
+  [data-route="agente-rag-pacientes"] .route li::before {
+    background: radial-gradient(circle, var(--burg) 0 2.5px, transparent 3px) 0 0 / 5px 9px repeat-y;
+  }
+
+  .line-entry--own .route li::before {
+    background: linear-gradient(var(--burg) 0 9px, transparent 9px) 0 0 / 5px 16px repeat-y;
+  }
+
+  /* ---------- stack del proyecto ---------- */
+  .le-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s2) var(--s4);
+    list-style: none;
+    margin: var(--s6) 0 0;
+    padding: var(--s4) 0 0;
+    border-top: 1px solid var(--rule);
+    font-size: 0.9375rem;
+    color: var(--ink-2);
+  }
+
+  .le-stack li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s2);
+  }
+
+  .le-stack li::before {
+    content: "";
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 2.5px var(--burg);
+  }
+
+  .le-stack .le-stack__label {
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .le-stack .le-stack__label::before {
+    display: none;
+  }
+
+  /* Las líneas de cliente son más densas: el proceso pesa más que la ficha */
+  .group--client .line-entry {
+    padding-block: var(--s7);
+  }
+
+  .group--client .le-head h3 {
+    font-size: clamp(2rem, 3vw, 2.75rem);
+  }
+
+  .group--client .le-body > p {
+    font-size: 1.0625rem;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 860px) {
+    .group-head,
+    .line-entry {
+      grid-template-columns: 1fr;
+      gap: var(--s5);
+    }
+
+    .le-head {
+      position: static;
+    }
+
+    .group + .group {
+      margin-top: var(--s9);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .line-entry,
+    .group--client .line-entry {
+      padding-block: var(--s7);
+    }
+
+    .le-body > p {
+      font-size: 1.0625rem;
+    }
+  }
+}

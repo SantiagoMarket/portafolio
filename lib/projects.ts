@@ -33,6 +33,11 @@ export type Project = {
   badge?: { label: string; tone: "award" | "event" };
   result: string;
   description: string;
+  /**
+   * Versión corta para la home, sólo cuando la descripción completa no cabe
+   * allí. La ficha siempre muestra `description`: ver `homeSummary`.
+   */
+  summary?: string;
   details: string[];
 };
 
@@ -75,6 +80,8 @@ export const projects: Project[] = [
     result: "Funciona sin cobertura",
     description:
       "En un terremoto la red móvil es lo primero que se cae, y es justo cuando hace falta. En 24 horas el equipo planteó un sistema de alerta temprana con tres piezas —el aviso, la ubicación de quien responde y la comunicación cuando ya no hay red— y yo me encargué de la app Android: las dos últimas. Un disparo remoto abre una pantalla de autorización en el teléfono; el gesto de la persona lanza a la vez una lectura GPS de un solo uso, un aviso al backend y una malla Bluetooth por la que los teléfonos cercanos se retransmiten mensajes entre sí. El aviso por internet y la malla son caminos independientes: la malla se enciende aunque el envío falle, porque quedarse sin red es exactamente el escenario para el que existe el canal directo entre teléfonos.",
+    summary:
+      "En un terremoto la red móvil es lo primero que se cae, y es justo cuando hace falta. En 24 horas el equipo planteó un sistema de alerta temprana con tres piezas —el aviso, la ubicación de quien responde y la comunicación cuando ya no hay red— y yo me encargué de la app Android: las dos últimas. El aviso por internet y la malla Bluetooth son caminos independientes: la malla se enciende aunque el envío falle, porque quedarse sin red es exactamente el escenario para el que existe el canal directo entre teléfonos.",
     details: [
       "Una notificación push abre la pantalla de autorización: la ubicación nunca sale sin el gesto de la persona",
       "El gesto dispara una lectura GPS de un solo uso, que entrega una muestra y cierra el proveedor sin dejar procesos escuchando",
@@ -98,7 +105,7 @@ export const projects: Project[] = [
     details: [
       "Formulario de diagnóstico con cálculo de ROI en tiempo real",
       "Generación de PDF personalizado con el análisis de ineficiencias",
-      "Integración con Clientify via Make para crear oportunidad automática",
+      "Integración con Clientify vía Make para crear oportunidad automática",
       "Asignación automática al comercial según segmento",
       "Notificación al equipo de ventas vía email",
     ],
@@ -128,7 +135,7 @@ export const projects: Project[] = [
     title: "Integración CRM + WhatsApp",
     tagline: "Lead entra por WhatsApp, sale etiquetado en GHL",
     stack: ["GoHighLevel", "Make", "WhatsApp API", "Webhooks"],
-    result: "~1h manual ahorrada/cliente",
+    result: "~1 h manual ahorrada por cliente",
     description:
       "Flujo de automatización que captura leads desde WhatsApp, los enruta por Make y los registra en GoHighLevel con etiquetado automático según respuestas.",
     details: [
@@ -180,6 +187,11 @@ export const projects: Project[] = [
 
 export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);
+}
+
+/** El texto que la home muestra bajo el título del proyecto. */
+export function homeSummary(project: Project): string {
+  return project.summary ?? project.description;
 }
 
 export function getProjectsByKind(kind: ProjectKind): Project[] {

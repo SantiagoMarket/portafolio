@@ -74,7 +74,7 @@ export default function BookingForm({ date, time, duration, onSuccess, onBack }:
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
       {/* Resumen de la reserva */}
       <div
-        className="px-4 py-3 rounded-lg text-sm font-mono"
+        className="px-4 py-3 rounded-lg text-sm font-sans"
         style={{ backgroundColor: "var(--burg-xl)", color: "var(--burg)" }}
       >
         {formatDate(date, time)} · {duration} min · Google Meet
@@ -160,7 +160,7 @@ export default function BookingForm({ date, time, duration, onSuccess, onBack }:
         <button
           type="submit"
           disabled={!valid || loading}
-          className="flex-1 py-3 text-sm font-mono font-bold rounded-lg transition-colors"
+          className="flex-1 py-3 text-sm font-sans font-bold rounded-lg transition-colors"
           style={{
             backgroundColor: valid && !loading ? "var(--burg)" : "var(--divider)",
             color: "white",

@@ -26,7 +26,7 @@ export default function DurationPicker({ selected, onSelect }: Props) {
             }}
           >
             <span
-              className="block text-xl font-mono font-bold"
+              className="block text-xl font-sans font-bold"
               style={{ color: isSelected ? "var(--burg)" : "var(--text-1)" }}
             >
               {label}

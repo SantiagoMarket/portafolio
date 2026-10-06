@@ -19,7 +19,7 @@ export default function RootLayout({
       <body>
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:text-sm focus:font-mono focus:rounded"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:text-sm focus:font-sans focus:rounded"
           style={{ backgroundColor: "var(--burg)", color: "white" }}
         >
           Saltar al contenido

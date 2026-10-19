@@ -29,7 +29,7 @@ const SECTIONS: { title: string; body: string[] }[] = [
     title: "Para qué se usan",
     body: [
       "Para agendar la llamada: con ellos se crea un evento en mi Google Calendar con un enlace de Google Meet, al que quedas invitado.",
-      "Para enviarte el correo de confirmación, que se envía a través de Resend.",
+      "Para enviarte el correo de confirmación.",
       "No se usan para publicidad ni se venden, alquilan o ceden a terceros.",
     ],
   },

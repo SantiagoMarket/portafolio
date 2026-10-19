@@ -33,6 +33,10 @@ describe("/privacidad", () => {
     expect(read(PAGE)).toMatch(/export const metadata[\s\S]*title:/);
   });
 
+  it("no nombra la herramienta de envío de correo (Resend)", () => {
+    expect(read(PAGE)).not.toMatch(/resend/i);
+  });
+
   it("/agenda enlaza a /privacidad", () => {
     expect(read(path.join(ROOT, "app", "agenda", "page.tsx"))).toMatch(/href="\/privacidad"/);
   });

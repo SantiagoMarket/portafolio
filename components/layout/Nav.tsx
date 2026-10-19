@@ -10,6 +10,7 @@ const navLinks = [
   { label: "hackathons", href: "/#hackathons" },
   { label: "clientes", href: "/#clientes" },
   { label: "propios", href: "/#propios" },
+  { label: "videojuegos", href: "/#videojuegos" },
   { label: "sobre-mí", href: "/#sobre-mi" },
   { label: "stack", href: "/#stack" },
   { label: "contacto", href: "/#contacto" },
@@ -18,7 +19,7 @@ const navLinks = [
 /**
  * La barra es un prompt, no una cabecera de landing: punto de estado, usuario y
  * los enlaces sin mayúsculas. El menú hamburguesa se conserva de la versión
- * anterior porque en móvil no caben siete enlaces y esconderlos sin más deja la
+ * anterior porque en móvil no caben ocho enlaces y esconderlos sin más deja la
  * página sin navegación.
  */
 export default function Nav() {

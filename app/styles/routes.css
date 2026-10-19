@@ -289,6 +289,25 @@
     font-size: 1.0625rem;
   }
 
+  /* ---------- videojuegos: misma fila, el icono ocupa el sitio del número ---------- */
+  .game-icon {
+    display: block;
+    width: 72px;
+    height: 72px;
+    border-radius: 0;
+  }
+
+  .game-meta {
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--ink-2);
+  }
+
+  .line-entry--game .le-tag {
+    margin-bottom: var(--s3);
+  }
+
   /* ---------- responsive ---------- */
   @media (max-width: 860px) {
     .group-head,

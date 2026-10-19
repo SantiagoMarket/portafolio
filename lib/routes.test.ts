@@ -14,6 +14,7 @@ const HOME_FILES = [
   "components/sections/Hero.tsx",
   "components/sections/TransitMap.tsx",
   "components/sections/ProjectGroups.tsx",
+  "components/sections/Games.tsx",
   "components/sections/About.tsx",
   "components/sections/Stack.tsx",
   "components/sections/Contact.tsx",

@@ -16,6 +16,7 @@ const HOME_TSX = [
   "components/sections/Hero.tsx",
   "components/sections/TransitMap.tsx",
   "components/sections/ProjectGroups.tsx",
+  "components/sections/Games.tsx",
   "components/sections/About.tsx",
   "components/sections/Stack.tsx",
   "components/sections/Contact.tsx",
@@ -142,9 +143,9 @@ describe("contrato de diseño de la home", () => {
     }
   });
 
-  it("el orden de la home es mapa, proyectos, sobre mí, stack y contacto", () => {
+  it("el orden de la home es mapa, proyectos, videojuegos, sobre mí, stack y contacto", () => {
     const page = read("app/page.tsx");
-    const order = ["<Hero", "<ProjectGroups", "<About", "<Stack", "<Contact"].map(
+    const order = ["<Hero", "<ProjectGroups", "<Games", "<About", "<Stack", "<Contact"].map(
       (tag) => page.indexOf(tag),
     );
     for (const idx of order) expect(idx).toBeGreaterThan(-1);

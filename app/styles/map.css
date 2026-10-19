@@ -20,6 +20,7 @@
 
   .nav ul {
     display: flex;
+    flex-wrap: wrap;
     gap: var(--s5);
     list-style: none;
     margin: 0;
@@ -27,6 +28,7 @@
   }
 
   .nav ul a {
+    white-space: nowrap;
     text-decoration: none;
     color: var(--on-burg-2);
     font-weight: 600;
@@ -316,7 +318,7 @@
     }
 
     .nav ul {
-      gap: var(--s4);
+      gap: 0 var(--s4);
     }
 
     .hero {

@@ -4,6 +4,7 @@
  */
 const links = [
   { href: "#proyectos", label: "Proyectos" },
+  { href: "#videojuegos", label: "Videojuegos" },
   { href: "#sobre-mi", label: "Sobre mí" },
   { href: "#stack", label: "Stack" },
   { href: "#contacto", label: "Contacto" },

@@ -38,7 +38,8 @@ export const projectGroups: { id: string; kind: ProjectKind; title: string; intr
 ];
 
 /** Entrada de Videojuegos, con la misma cabecera que los grupos de proyectos. */
-export const gamesIntro = "Juegos desarrollados por hobby";
+export const gamesIntro =
+  "Estudio propio: diseño, desarrollo y publicación de juegos para Android, por hobby";
 
 export const about = {
   lead: "Vengo del marketing y la creación de contenido — eso me enseñó que el marketing y las ventas deben apalancarse de la tecnología para ser eficientes.",

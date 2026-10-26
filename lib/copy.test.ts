@@ -61,10 +61,18 @@ describe("copy de la home", () => {
   });
 
   it("Videojuegos tiene su entrada, como los grupos de proyectos", () => {
-    expect(gamesIntro).toBe("Juegos desarrollados por hobby");
+    expect(gamesIntro).toBe(
+      "Estudio propio: diseño, desarrollo y publicación de juegos para Android, por hobby",
+    );
     const fuente = readFileSync(join(__dirname, "..", "components", "sections", "Games.tsx"), "utf8");
     expect(fuente).toContain("gamesIntro");
     expect(fuente).toContain('className="group-head"');
+  });
+
+  it("la sección de juegos se titula como el estudio y conserva su ancla", () => {
+    const fuente = readFileSync(join(__dirname, "..", "components", "sections", "Games.tsx"), "utf8");
+    expect(fuente).toContain('<h2 id="games-h">HannaGames, mi estudio indie</h2>');
+    expect(fuente).toContain('id="videojuegos"');
   });
 
   // El hero pasó de nombre + párrafo + datos a nombre + datos.

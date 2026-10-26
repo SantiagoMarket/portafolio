@@ -12,7 +12,7 @@ export default function Games() {
     <section className="sec" id="videojuegos" aria-labelledby="games-h">
       <div className="wrap">
         <div className="group-head">
-          <h2 id="games-h">Videojuegos</h2>
+          <h2 id="games-h">HannaGames, mi estudio indie</h2>
           <p>{gamesIntro}</p>
         </div>
         {games.map((game) => (

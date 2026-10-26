@@ -46,8 +46,8 @@ describe("separación por tipo", () => {
     ).toBe(projects.length);
   });
 
-  it("los proyectos propios son sólo el asistente local", () => {
-    expect(personalProjects.map((p) => p.slug)).toEqual(["asistente-ia-local"]);
+  it("los proyectos propios son Lucía y Tino, en ese orden", () => {
+    expect(personalProjects.map((p) => p.slug)).toEqual(["asistente-ia-local", "tino"]);
     expect(getProjectsByKind("personal").every((p) => p.kind === "personal")).toBe(true);
   });
 
@@ -65,7 +65,7 @@ describe("integridad de los datos", () => {
   });
 
   it("la numeración es continua y sin huecos", () => {
-    expect(projects.map((p) => p.number)).toEqual(["01", "02", "03", "04", "05", "06", "07"]);
+    expect(projects.map((p) => p.number)).toEqual(["01", "02", "03", "04", "05", "06", "07", "08"]);
   });
 
   // El fallo propio de este diseño: los proyectos son datos y las rutas son
@@ -132,6 +132,7 @@ describe("proyectos nuevos", () => {
   it.each([
     ["agente-rag-pacientes", "cliente", "06"],
     ["asistente-ia-local", "personal", "07"],
+    ["tino", "personal", "08"],
   ] as const)("%s existe como %s con número %s y tiene página", (slug, kind, number) => {
     const project = getProjectBySlug(slug);
     expect(project?.kind).toBe(kind);
@@ -162,7 +163,7 @@ function textos(p: (typeof projects)[number]): string[] {
 describe("guard de datos sensibles", () => {
   // Nombres de clientes, proveedores y del equipo propio: no se publican en
   // ninguna ficha.
-  const IDENTIFICABLES = ["nieves", "kommo", "supermainds", "lenovo"];
+  const IDENTIFICABLES = ["nieves", "kommo", "supermainds", "lenovo", "bancolombia", "zivex"];
 
   it("ningún proyecto publica datos identificables", () => {
     for (const p of projects) {
@@ -173,30 +174,81 @@ describe("guard de datos sensibles", () => {
     }
   });
 
-  // Requisito para estas dos fichas: se describen por lo que hacen, no por
-  // el proveedor o el modelo concreto que las implementa.
-  const TECNICOS = ["supabase", "openai", "pgvector", "phi-4", "openvino"];
-
-  it.each(["agente-rag-pacientes", "asistente-ia-local"])(
-    "%s no publica detalles técnicos de implementación",
-    (slug) => {
-      const project = getProjectBySlug(slug);
-      expect(project).toBeDefined();
-      const texto = textos(project!).join(" ").toLowerCase();
-      for (const termino of TECNICOS) {
-        expect(texto, `${slug} contiene ${termino}`).not.toContain(termino);
-      }
-    },
-  );
-
   it("el guard detecta un término sin importar mayúsculas", () => {
     const texto = textos({
       ...projects[0],
-      tagline: "Hecho con PGVector",
+      tagline: "Hecho para NIEVES",
     })
       .join(" ")
       .toLowerCase();
-    expect(texto).toContain("pgvector");
+    expect(texto).toContain("nieves");
+  });
+});
+
+describe("ficha de Lucía", () => {
+  it("asistente-ia-local menciona Ritmia y Whisper", () => {
+    const texto = textos(getProjectBySlug("asistente-ia-local")!).join(" ");
+    expect(texto).toContain("Ritmia");
+    expect(texto).toContain("Whisper");
+  });
+
+  // Contenido aprobado: la ficha de Lucía no publica el conteo de tests ni TDD.
+  it.each(["1000 tests", "TDD"])("no menciona «%s»", (termino) => {
+    const lucia = getProjectBySlug("asistente-ia-local")!;
+    expect([...textos(lucia), lucia.summary ?? ""].join(" ")).not.toContain(termino);
+  });
+});
+
+describe("fechas de los hackathons", () => {
+  it("Komared es de 2026, no de 2025", () => {
+    const komared = getProjectBySlug("komared")!;
+    const texto = [...textos(komared), komared.summary ?? ""].join(" ");
+    expect(komared.highlight?.detail).toContain("2026");
+    expect(texto).not.toContain("2025");
+  });
+
+  it("todos los hackathons quedan fechados en 2026", () => {
+    for (const p of hackathonProjects) {
+      expect(p.highlight?.detail, p.slug).toContain("2026");
+    }
+  });
+});
+
+describe("ficha de Tino", () => {
+  const tino = () => getProjectBySlug("tino")!;
+
+  it("es la herramienta de prospección de Ritmia, con título en el estilo de Lucía", () => {
+    expect(tino().title).toBe("Tino — Prospección B2B con IA");
+    expect(textos(tino()).join(" ")).toContain("Ritmia");
+    expect(tino().result).toBe("Cada lead con fuente y fecha");
+  });
+
+  it("declara el stack aprobado", () => {
+    expect(tino().stack).toEqual(["Next.js", "TypeScript", "Claude API", "SQLite", "zod", "Vitest"]);
+  });
+
+  // Contenido aprobado: ni la ley, ni el cliente de prueba, ni el conteo de
+  // tests salen en la ficha.
+  it.each(["1581", "zivex", "tests"])("no menciona «%s»", (termino) => {
+    expect(textos(tino()).join(" ").toLowerCase()).not.toContain(termino);
+  });
+
+  // Ajustes aprobados: Tino habla de mensajes, no de correos; sin el origen
+  // del nombre ni el traspaso a una persona; la investigación incluye LinkedIn.
+  const todoTino = () => [...textos(tino()), tino().summary ?? ""].join(" ");
+
+  it("no habla de correo ni de email", () => {
+    expect(todoTino()).not.toMatch(/correo|e-?mail/i);
+  });
+
+  it("no explica el nombre ni el traspaso a una persona", () => {
+    expect(todoTino().toLowerCase()).not.toContain("tener tino");
+    expect(todoTino().toLowerCase()).not.toContain("deja de hablar");
+  });
+
+  it("la investigación incluye LinkedIn y redacta el primer mensaje de contacto", () => {
+    expect(todoTino()).toContain("LinkedIn");
+    expect(todoTino()).toContain("primer mensaje de contacto");
   });
 });
 
@@ -217,6 +269,13 @@ describe("copy alineado con la home", () => {
     expect(cbs.summary).toBeDefined();
     expect(cbs.summary!.length).toBeLessThan(cbs.description.length);
     expect(cbs.summary).not.toContain("Un disparo remoto");
+  });
+
+  it("la ficha de CBS no menciona los 171 tests ni el CI en GitHub Actions", () => {
+    const cbs = getProjectBySlug("cbs-alert-mesh")!;
+    const textos = JSON.stringify(cbs);
+    expect(textos).not.toContain("171 tests");
+    expect(textos).not.toContain("GitHub Actions");
   });
 
   it("homeSummary usa la descripción cuando no hay resumen", () => {

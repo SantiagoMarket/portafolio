@@ -2,8 +2,8 @@
 tipo: identidad
 area: [Identidad]
 estado: cerrado
-version: v1
-fecha_actualizacion: 2026-10-02
+version: v2
+fecha_actualizacion: 2026-10-21
 ---
 
 # Identidad Visual
@@ -33,7 +33,7 @@ Fuente: skill `/diseno` original; `redesign/index.html` (lede de la bitácora).
 ## Compromiso de marca (desde V5)
 
 - Borgoña `#7A0B24` con su familia `#9B0E2E`, `#C4405A`, `#F0D6DC`. Es lo único que el usuario fijó.
-- Título público: "Systems Integrator".
+- Título público: "AI Engineer" (desde 2026-10-21; antes "Systems Integrator").
 - Idioma del sitio: español.
 - El borgoña tiene ≈83 % de saturación HSL. Choca con el tope de taste-skill (< 80 %) y con su lista de rojos "AI-default", pero se conserva porque es de marca.
 
@@ -48,3 +48,4 @@ Fuente: `redesign/v5-impeccable/PRODUCT.md` y `redesign/v7-combinada/PRODUCT.md`
 ## Historial de cambios
 
 - v1 (2026-10-02): nota creada a partir de la skill `/diseno` original, la bitácora y los PRODUCT.md de V5 y V7.
+- v2 (2026-10-21): título público pasa de "Systems Integrator" a "AI Engineer".

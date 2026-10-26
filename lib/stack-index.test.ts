@@ -41,6 +41,26 @@ describe("índice herramienta → proyectos", () => {
     expect(entry("Notion").note).toBeUndefined();
   });
 
+  // La categoría de IA sólo lista herramientas que se ven en algún proyecto.
+  it("cada herramienta de IA / LLM aparece en al menos un proyecto", () => {
+    const ia = stackIndex.find((c) => c.label === "IA / LLM");
+    expect(ia).toBeDefined();
+    for (const { tool, projects: found } of ia!.entries) {
+      expect(found.length, tool).toBeGreaterThan(0);
+    }
+  });
+
+  it("Whisper y OpenVINO apuntan a Lucía; pgvector al agente de pacientes", () => {
+    expect(numbers("Whisper")).toEqual(["07"]);
+    expect(numbers("OpenVINO")).toEqual(["07"]);
+    expect(numbers("pgvector")).toEqual(["06"]);
+  });
+
+  it("Claude API apunta a Tino y SQLite a Lucía y Tino", () => {
+    expect(numbers("Claude API")).toEqual(["08"]);
+    expect(numbers("SQLite")).toEqual(["07", "08"]);
+  });
+
   it("conserva las categorías y el orden de la home", () => {
     expect(stackIndex.map((c) => c.label)).toEqual(stackCategories.map((c) => c.label));
   });

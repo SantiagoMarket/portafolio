@@ -89,6 +89,18 @@ describe("enlaces internos", () => {
     expect(contact).not.toMatch(/mailto:[^"]*subject=/i);
   });
 
+  it("el LinkedIn de contacto usa el perfil real (igual que /tarjeta)", () => {
+    const url = "https://www.linkedin.com/in/victor-santiago-cubillos-cruz-b09860256/";
+    expect(read("components/sections/Contact.tsx")).toContain(`href: "${url}"`);
+    expect(read("app/tarjeta/page.tsx")).toContain(url);
+  });
+
+  it("el correo de reserva firma desde Bogotá, no Cali", () => {
+    const route = read("app/api/book/route.ts");
+    expect(route).not.toMatch(/Cali/);
+    expect(route).toMatch(/Bogot(á|&aacute;), Colombia/);
+  });
+
   it("la home no enlaza a /tarjeta ni a /meet", () => {
     for (const file of HOME_FILES) {
       expect(read(file), file).not.toMatch(/["'`]\/(tarjeta|meet)\b/);

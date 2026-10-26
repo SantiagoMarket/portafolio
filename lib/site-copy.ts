@@ -3,12 +3,11 @@ import type { ProjectKind } from "./projects";
 
 export const hero = {
   name: "Víctor Santiago Cubillos Cruz",
-  lede: "Conecto procesos de negocio, CRMs y automatizaciones para que los equipos de ventas y marketing operen sin fricción. Del webhook al reporte, sin intervención manual.",
   meta: ["Bogotá, Colombia", "Disponible para roles full-time en LATAM", "Español / Inglés A2"],
 };
 
 export const mapCaption =
-  "Siete sistemas construidos. Cada línea es un proyecto y cada estación una herramienta; los transbordos son las herramientas que comparten. Pasa sobre una línea o tócala para seguir su recorrido.";
+  "Ocho sistemas construidos. Cada línea es un proyecto y cada estación una herramienta; los transbordos son las herramientas que comparten. Pasa sobre una línea o tócala para seguir su recorrido.";
 
 /**
  * Los tres grupos de la home. El `id` es el ancla que usan el menú y las
@@ -32,21 +31,24 @@ export const projectGroups: { id: string; kind: ProjectKind; title: string; intr
   {
     id: "propios",
     kind: "personal",
-    title: "Proyecto propio",
+    title: "Proyectos propios",
     intro:
       "Sin cliente ni plazo de evento: lo que construyo para probar una idea hasta el final y usarlo a diario.",
   },
 ];
 
+/** Entrada de Videojuegos, con la misma cabecera que los grupos de proyectos. */
+export const gamesIntro = "Juegos desarrollados por hobby";
+
 export const about = {
   lead: "Vengo del marketing y la creación de contenido — eso me enseñó que el marketing y las ventas deben apalancarse de la tecnología para ser eficientes.",
-  body: `Hoy conecto ese conocimiento con automatización, CRMs e integraciones para que los procesos funcionen solos. Año y medio especializándome como ${roleTitle}, con experiencia en agencia y proyectos propios.`,
+  body: `Empecé integrando CRMs y automatizaciones; hoy construyo como ${roleTitle}: agentes con RAG, modelos locales y flujos que conectan todo, en agencia y proyectos propios.`,
 };
 
 export const experience = {
   role: "Integrador de Sistemas",
   org: "Hands Off Agencia",
-  period: "Oct 2024 → May 2025",
+  period: "Nov 2024 → May 2026",
   place: "Bogotá, Colombia",
   highlights: [
     "12 proyectos de integración CRM (HubSpot, GoHighLevel, Clientify)",
@@ -76,10 +78,14 @@ export const stackIntro =
  * proyecto: son las que llevan números en el índice.
  */
 export const stackCategories = [
+  {
+    label: "IA / LLM",
+    tools: ["Gemini 2.5 Flash", "OpenAI", "Whisper", "Qwen3", "OpenVINO", "pgvector", "Claude API"],
+  },
   { label: "AUTOMATIZACIÓN", tools: ["n8n", "Make", "Zapier"] },
   { label: "CRM & SALES OPS", tools: ["HubSpot", "GoHighLevel", "Clientify"] },
   { label: "MENSAJERÍA", tools: ["WhatsApp Business API"] },
-  { label: "DESARROLLO", tools: ["Supabase", "Vercel", "Claude Code", "Codex", "Cursor"] },
+  { label: "DESARROLLO", tools: ["Supabase", "Vercel", "SQLite", "Claude Code", "Codex", "Cursor"] },
   { label: "DATA & REPORTING", tools: ["Looker Studio"] },
   { label: "PRODUCTIVIDAD", tools: ["Notion"] },
 ];

@@ -4,8 +4,10 @@ import {
   buildMapLines,
   getMapLine,
   lineLabel,
+  mapLabels,
   mapLines,
   mapRoundels,
+  mapStations,
   pulseDelay,
   PULSE_STEP_MS,
   rawLines,
@@ -53,6 +55,34 @@ describe("líneas del mapa", () => {
   it("falla si una línea apunta a un proyecto que no existe", () => {
     const fantasma = [...rawLines, { ...rawLines[0], slug: "fantasma" }];
     expect(() => buildMapLines(fantasma, projects)).toThrow(/fantasma/);
+  });
+});
+
+describe("línea de Tino", () => {
+  it("es una línea propia (punteada) que sale del transbordo de Next.js", () => {
+    const tino = rawLines.find((l) => l.slug === "tino");
+    expect(tino?.style).toBe("own");
+    expect(tino?.d.startsWith("M598 220")).toBe(true);
+    expect(getMapLine("tino")?.number).toBe(8);
+  });
+
+  it("sus estaciones son herramientas de su stack", () => {
+    const textos = mapLabels.map((l) => l.text);
+    for (const tool of ["TypeScript", "Claude API", "zod", "Vitest"]) {
+      expect(textos, tool).toContain(tool);
+      expect(projects.find((p) => p.slug === "tino")?.stack, tool).toContain(tool);
+    }
+  });
+});
+
+describe("integridad del dibujo", () => {
+  // Las etiquetas y estaciones se usan como key de React: repetirlas rompe el
+  // render en silencio (y una herramienta repetida debería ser un transbordo).
+  it("no hay etiquetas ni estaciones repetidas", () => {
+    const textos = mapLabels.map((l) => l.text);
+    expect(new Set(textos).size).toBe(textos.length);
+    const puntos = mapStations.map((s) => `${s.cx}-${s.cy}`);
+    expect(new Set(puntos).size).toBe(puntos.length);
   });
 });
 

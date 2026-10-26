@@ -11,7 +11,7 @@ const channels = [
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com/in/victor-santiago-cubillos-cruz",
+    href: "https://www.linkedin.com/in/victor-santiago-cubillos-cruz-b09860256/",
     display: "victor-santiago-cubillos-cruz",
     icon: "out",
   },

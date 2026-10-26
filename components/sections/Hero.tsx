@@ -18,7 +18,6 @@ export default function Hero() {
           <div>
             <h1>{roleTitle}</h1>
             <p className="hero__who">{hero.name}</p>
-            <p className="hero__lede">{hero.lede}</p>
             <p className="hero__meta">
               {hero.meta.map((m) => (
                 <span key={m}>{m}</span>

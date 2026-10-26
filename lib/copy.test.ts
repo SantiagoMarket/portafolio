@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { roleTitle } from "./profile";
 import {
@@ -5,6 +7,7 @@ import {
   contact,
   education,
   experience,
+  gamesIntro,
   hero,
   mapCaption,
   projectGroups,
@@ -27,8 +30,9 @@ describe("formación y stack", () => {
 });
 
 describe("copy de la home", () => {
-  it("el stack sigue el orden de la home: Mensajería antes que Desarrollo", () => {
+  it("el stack sigue el orden de la home: IA primero, Mensajería antes que Desarrollo", () => {
     expect(stackCategories.map((c) => c.label)).toEqual([
+      "IA / LLM",
       "AUTOMATIZACIÓN",
       "CRM & SALES OPS",
       "MENSAJERÍA",
@@ -52,6 +56,24 @@ describe("copy de la home", () => {
     for (const group of projectGroups) expect(group.intro.length).toBeGreaterThan(0);
   });
 
+  it("el grupo personal va en plural: hay más de un proyecto propio", () => {
+    expect(projectGroups.find((g) => g.kind === "personal")?.title).toBe("Proyectos propios");
+  });
+
+  it("Videojuegos tiene su entrada, como los grupos de proyectos", () => {
+    expect(gamesIntro).toBe("Juegos desarrollados por hobby");
+    const fuente = readFileSync(join(__dirname, "..", "components", "sections", "Games.tsx"), "utf8");
+    expect(fuente).toContain("gamesIntro");
+    expect(fuente).toContain('className="group-head"');
+  });
+
+  // El hero pasó de nombre + párrafo + datos a nombre + datos.
+  it("el hero ya no tiene párrafo de entrada", () => {
+    expect(hero).not.toHaveProperty("lede");
+    const fuente = readFileSync(join(__dirname, "..", "components", "sections", "Hero.tsx"), "utf8");
+    expect(fuente).not.toContain("lede");
+  });
+
   it("Sobre mí corrige la tilde: «enseñó que», no «enseñó qué»", () => {
     expect(about.lead).toContain("enseñó que");
     expect(about.lead).not.toContain("enseñó qué");
@@ -66,13 +88,17 @@ describe("copy de la home", () => {
     expect(experience.highlights).toHaveLength(4);
   });
 
+  it("la experiencia en Hands Off va de nov. 2024 a may. 2026", () => {
+    expect(experience.period).toBe("Nov 2024 → May 2026");
+  });
+
   it("el hero tiene tres datos y el pie del mapa explica cómo usarlo", () => {
     expect(hero.meta).toEqual([
       "Bogotá, Colombia",
       "Disponible para roles full-time en LATAM",
       "Español / Inglés A2",
     ]);
-    expect(mapCaption).toMatch(/^Siete sistemas construidos/);
+    expect(mapCaption).toMatch(/^Ocho sistemas construidos/);
   });
 
   it("contacto lleva la nota de la llamada", () => {

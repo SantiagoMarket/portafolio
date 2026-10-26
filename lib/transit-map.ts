@@ -90,9 +90,21 @@ export const rawLines: RawLine[] = [
   },
   {
     slug: "asistente-ia-local",
-    shortName: "Asistente IA local",
+    shortName: "Lucía · actas IA",
     style: "own",
     d: "M140 380V80",
+    swatch: [{ tone: "blush", width: 4, dash: "6 5" }],
+  },
+  {
+    // Sale del transbordo de Next.js hacia arriba (el único rumbo libre: CBS
+    // sigue en diagonal y Komared en horizontal) y corre por la franja vacía
+    // de arriba, sin cruzar ninguna línea. SQLite, que comparte con Lucía, no
+    // lleva estación: llegar a la suya obligaría a cruzar la línea 5/6 fuera
+    // de un transbordo.
+    slug: "tino",
+    shortName: "Tino · prospección",
+    style: "own",
+    d: "M598 220V120L558 80H380",
     swatch: [{ tone: "blush", width: 4, dash: "6 5" }],
   },
 ];
@@ -155,12 +167,20 @@ export const mapStations: Station[] = [
   { cx: 600, cy: 380 },
   { cx: 320, cy: 380 },
   { cx: 320, cy: 540 },
-  { cx: 320, cy: 220 },
+  { cx: 320, cy: 250 },
+  { cx: 320, cy: 195 },
   { cx: 320, cy: 140 },
   { cx: 260, cy: 80 },
   { cx: 140, cy: 380 },
-  { cx: 140, cy: 290 },
-  { cx: 140, cy: 190 },
+  { cx: 140, cy: 310 },
+  { cx: 140, cy: 268 },
+  { cx: 140, cy: 226 },
+  { cx: 140, cy: 184 },
+  { cx: 140, cy: 142 },
+  { cx: 598, cy: 140 },
+  { cx: 515, cy: 80 },
+  { cx: 440, cy: 80 },
+  { cx: 380, cy: 80 },
   { cx: 320, cy: 300, hub: true },
   { cx: 518, cy: 300, hub: true },
   { cx: 598, cy: 220, hub: true },
@@ -203,13 +223,21 @@ export const mapLabels: MapLabel[] = [
   { x: 306, y: 385, text: "Webhooks", anchor: "end" },
   { x: 334, y: 447, text: "Make", hub: true },
   { x: 334, y: 545, text: "GoHighLevel" },
-  { x: 334, y: 225, text: "Embeddings" },
-  { x: 334, y: 145, text: "Búsqueda vectorial" },
+  { x: 334, y: 255, text: "OpenAI" },
+  { x: 334, y: 200, text: "Embeddings" },
+  { x: 334, y: 145, text: "pgvector" },
   { x: 260, y: 64, text: "RAG", anchor: "middle" },
-  { x: 140, y: 58, text: "Agentes de IA", anchor: "middle", hub: true },
-  { x: 154, y: 195, text: "LLM local" },
-  { x: 154, y: 295, text: "NPU" },
+  { x: 140, y: 58, text: "LLM", anchor: "middle", hub: true },
+  { x: 154, y: 147, text: "Qwen3" },
+  { x: 154, y: 189, text: "OpenVINO" },
+  { x: 154, y: 231, text: "NPU" },
+  { x: 154, y: 273, text: "Whisper" },
+  { x: 154, y: 315, text: "SQLite" },
   { x: 154, y: 385, text: "Python" },
+  { x: 584, y: 145, text: "TypeScript", anchor: "end" },
+  { x: 515, y: 64, text: "Claude API", anchor: "middle" },
+  { x: 440, y: 64, text: "zod", anchor: "middle" },
+  { x: 380, y: 64, text: "Vitest", anchor: "middle" },
 ];
 
 /** El número de cada línea, en un círculo sobre su trazo. */
@@ -220,5 +248,6 @@ export const mapRoundels: { number: number; cx: number; cy: number }[] = [
   { number: 4, cx: 720, cy: 380 },
   { number: 5, cx: 320, cy: 420 },
   { number: 6, cx: 200, cy: 80 },
-  { number: 7, cx: 140, cy: 335 },
+  { number: 7, cx: 140, cy: 345 },
+  { number: 8, cx: 598, cy: 182 },
 ];

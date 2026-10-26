@@ -25,8 +25,8 @@ const publicSurfaces = [
 ];
 
 describe("título público", () => {
-  it("el rol es Systems Integrator, no RevOps", () => {
-    expect(roleTitle).toBe("Systems Integrator");
+  it("el rol es AI Engineer, no RevOps", () => {
+    expect(roleTitle).toBe("AI Engineer");
     expect(roleTitle).not.toMatch(/RevOps/i);
   });
 
@@ -36,6 +36,7 @@ describe("título público", () => {
   });
 
   it("el prompt del shell y las keywords no arrastran RevOps", () => {
+    expect(shellPrompt).toBe("santiago@ai:~");
     expect(shellPrompt).not.toMatch(/revops/i);
     expect(roleKeywords).toContain(roleTitle);
     expect(roleKeywords.some((k) => /revops/i.test(k))).toBe(false);
@@ -48,6 +49,7 @@ describe("título público", () => {
       expect(text, file).not.toMatch(/RevOps/);
       expect(text, file).not.toMatch(/Automation Specialist/);
       expect(text, file).not.toMatch(/Automation Integrator/);
+      expect(text, file).not.toMatch(/Systems Integrator/i);
     }
   });
 });

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { games } from "@/lib/games";
+import { gamesIntro } from "@/lib/site-copy";
 
 /**
  * Los videojuegos, en el mismo lenguaje que las líneas de proyecto: una fila
@@ -10,8 +11,9 @@ export default function Games() {
   return (
     <section className="sec" id="videojuegos" aria-labelledby="games-h">
       <div className="wrap">
-        <div className="sec-head">
+        <div className="group-head">
           <h2 id="games-h">Videojuegos</h2>
+          <p>{gamesIntro}</p>
         </div>
         {games.map((game) => (
           <article key={game.slug} className="line-entry line-entry--game" id={game.slug}>

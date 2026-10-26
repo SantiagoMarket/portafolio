@@ -66,16 +66,8 @@
     font-size: 1.25rem;
   }
 
-  .hero__lede {
-    font-size: 1.1875rem;
-    line-height: 1.55;
-    max-width: 34ch;
-    margin: var(--s5) 0 var(--s4);
-    color: var(--white);
-  }
-
   .hero__meta {
-    margin: 0 0 var(--s6);
+    margin: var(--s4) 0 var(--s6);
     color: var(--on-burg-2);
     font-size: 0.9375rem;
     display: flex;
@@ -303,10 +295,6 @@
       grid-template-columns: minmax(0, 1fr);
       gap: var(--s6);
     }
-
-    .hero__lede {
-      max-width: 46ch;
-    }
   }
 
   @media (max-width: 640px) {
@@ -323,10 +311,6 @@
 
     .hero {
       padding-block: var(--s4) var(--s7);
-    }
-
-    .hero__lede {
-      font-size: 1.0625rem;
     }
 
     /* En móvil el mapa no se encoge: se desliza, y el borde derecho se

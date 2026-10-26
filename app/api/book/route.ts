@@ -130,7 +130,7 @@ function guestEmail(nombre: string, fecha: string): string {
       <!-- Footer -->
       <tr><td style="background:#0E1012;border-top:1px solid #1E2226;padding:20px 32px;">
         <p class="mono" style="margin:0;font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:#4A4F54;">
-          &copy; 2026 Santiago &middot; ${roleTitle}<br>Santiago de Cali, Colombia
+          &copy; 2026 Santiago &middot; ${roleTitle}<br>Bogot&aacute;, Colombia
         </p>
       </td></tr>
 

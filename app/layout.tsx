@@ -5,7 +5,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: documentTitle,
   description:
-    "Conecto procesos de negocio, CRMs y automatizaciones para que los equipos de ventas y marketing operen sin fricción.",
+    "Construyo sistemas con IA —agentes, RAG y modelos locales— conectados a los procesos y CRMs donde opera el negocio.",
   keywords: roleKeywords,
 };
 

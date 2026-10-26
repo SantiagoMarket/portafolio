@@ -16,6 +16,34 @@ describe("videojuegos", () => {
     expect(game?.mechanics).toEqual(["Espejos", "Divisores", "Filtros", "Mezcla"]);
   });
 
+  it("Colmena está en la lista con sus datos", () => {
+    const game = games.find((g) => g.slug === "colmena");
+    expect(game).toBeDefined();
+    expect(game?.title).toBe("Colmena");
+    expect(game?.studio).toBe("HannaGames");
+    expect(game?.genre).toBe("Puzle de panal");
+    expect(game?.platform).toBe("Android");
+    expect(game?.url).toBe("https://hannagames.com/colmena/");
+    expect(game?.icon).toBe("/games/colmena-icon.webp");
+    expect(game?.mechanics).toEqual(["Piezas hexagonales", "Líneas en 3 direcciones", "Combos y rachas", "Reto diario"]);
+  });
+
+  it("Fiel está en la lista con sus datos", () => {
+    const game = games.find((g) => g.slug === "fiel");
+    expect(game).toBeDefined();
+    expect(game?.title).toBe("Fiel");
+    expect(game?.studio).toBe("HannaGames");
+    expect(game?.genre).toBe("Puzle de balanzas");
+    expect(game?.platform).toBe("Android");
+    expect(game?.url).toBe("https://hannagames.com/fiel/");
+    expect(game?.icon).toBe("/games/fiel-icon.webp");
+    expect(game?.mechanics).toEqual(["Platillos", "Móviles", "Palancas", "Globos"]);
+  });
+
+  it("el orden es Destello, Colmena, Fiel", () => {
+    expect(games.map((g) => g.slug)).toEqual(["destello", "colmena", "fiel"]);
+  });
+
   it("cada url es https y del host hannagames.com", () => {
     for (const game of games) {
       const url = new URL(game.url);

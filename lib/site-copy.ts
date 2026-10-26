@@ -61,6 +61,11 @@ export const experience = {
 
 export const education = [
   {
+    institution: "Ignia · Claude Code para Devs",
+    detail: "Bootcamp de desarrollo con agentes de IA · Contexto, specs y tests, worktrees en paralelo",
+    period: "12 horas · 3 sesiones · Jul 2026",
+  },
+  {
     institution: "Ignia Action Lab",
     detail: "Programa práctico de emprendimiento",
     period: "12 semanas · 2026 · Bogotá, Colombia",

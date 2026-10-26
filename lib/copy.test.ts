@@ -20,6 +20,14 @@ describe("formación y stack", () => {
     expect(ignia?.detail).toBe("Programa práctico de emprendimiento");
   });
 
+  it("el bootcamp Claude Code para Devs de Ignia va primero, fechado en 2026 y sin microcredencial", () => {
+    const [primera] = education;
+    expect(primera.institution).toBe("Ignia · Claude Code para Devs");
+    expect(primera.detail).toMatch(/^Bootcamp/);
+    expect(primera.period).toBe("12 horas · 3 sesiones · Jul 2026");
+    expect(JSON.stringify(primera).toLowerCase()).not.toContain("microcredencial");
+  });
+
   it("DESARROLLO no incluye Next.js ni Kotlin y sí Codex y Cursor", () => {
     const desarrollo = stackCategories.find((c) => c.label === "DESARROLLO");
     expect(desarrollo?.tools).not.toContain("Next.js");

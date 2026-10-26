@@ -58,6 +58,13 @@ describe("líneas del mapa", () => {
   });
 });
 
+describe("línea de Lucía", () => {
+  it("su nombre corto habla de tareas, no de actas", () => {
+    const lucia = rawLines.find((l) => l.slug === "asistente-ia-local");
+    expect(lucia?.shortName).toBe("Lucía · tareas IA");
+  });
+});
+
 describe("línea de Tino", () => {
   it("es una línea propia (punteada) que sale del transbordo de Next.js", () => {
     const tino = rawLines.find((l) => l.slug === "tino");

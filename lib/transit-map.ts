@@ -90,7 +90,7 @@ export const rawLines: RawLine[] = [
   },
   {
     slug: "asistente-ia-local",
-    shortName: "Lucía · actas IA",
+    shortName: "Lucía · tareas IA",
     style: "own",
     d: "M140 380V80",
     swatch: [{ tone: "blush", width: 4, dash: "6 5" }],

@@ -186,6 +186,19 @@ describe("guard de datos sensibles", () => {
 });
 
 describe("ficha de Lucía", () => {
+  it("se presenta como gestión de tareas con IA local", () => {
+    const lucia = getProjectBySlug("asistente-ia-local")!;
+    expect(lucia.title).toBe("Lucía: Gestión de tareas con IA local");
+    expect(lucia.title).not.toContain("Actas de reunión");
+    expect(lucia.result).toBe("Cero datos fuera del equipo");
+  });
+
+  it("explica que de la reunión salen acta y tareas", () => {
+    const texto = textos(getProjectBySlug("asistente-ia-local")!).join(" ");
+    expect(texto).toMatch(/tareas/i);
+    expect(texto).toContain("acta");
+  });
+
   it("asistente-ia-local menciona Ritmia y Whisper", () => {
     const texto = textos(getProjectBySlug("asistente-ia-local")!).join(" ");
     expect(texto).toContain("Ritmia");
